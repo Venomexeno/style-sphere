@@ -10,15 +10,22 @@ class LoginCubit extends Cubit<LoginState> {
 
   final FetchTokenUseCase tokenUseCase;
 
-  Future<void> fetchToken() async {
+  Future<void> fetchToken({
+    required String email,
+    required String password,
+  }) async {
     emit(LoginLoading());
-    var result = await tokenUseCase.call();
+    var result = await tokenUseCase.call(
+      LoginParameters(
+        email: email,
+        password: password,
+      ),
+    );
 
     result.fold((failure) {
       emit(LoginFailure(failure.message));
     }, (token) {
       emit(LoginSuccess(token));
-      print(token);
     });
   }
 }

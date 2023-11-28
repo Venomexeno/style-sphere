@@ -95,7 +95,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                       context, AppRoutes.homePageRoute);
                 }
                 if (state is LoginFailure) {
-                   final snackBar = SnackBar(
+                  final snackBar = SnackBar(
                     duration: const Duration(seconds: 2),
                     content: Center(
                       child: Text(state.errMessage),
@@ -117,11 +117,11 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      print('Success');
-                      BlocProvider.of<LoginCubit>(context).fetchToken();
-                    } else {
-                      print('Error');
-                    }
+                      BlocProvider.of<LoginCubit>(context).fetchToken(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      );
+                    } else {}
                   },
                   child: Text(
                     'Login',

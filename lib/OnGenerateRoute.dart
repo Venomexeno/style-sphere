@@ -1,13 +1,22 @@
 import 'package:ecommerce/core/constants/app_routes.dart';
+import 'package:ecommerce/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:ecommerce/features/auth/presentation/pages/login_page.dart';
 import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'core/utils/functions/service_locator.dart';
 
 class OnGenerateRoute {
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.loginPageRoute:
-        return materialBuilder(widget: const LoginPage(), settings: settings);
+        return materialBuilder(
+            widget: BlocProvider<LoginCubit>(
+              create: (context) => sl<LoginCubit>(),
+              child: const LoginPage(),
+            ),
+            settings: settings);
 
       case AppRoutes.homePageRoute:
         return materialBuilder(widget: const HomePage(), settings: settings);
