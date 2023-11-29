@@ -11,9 +11,22 @@ class ApiService {
 
     return response.data;
   }
+
   Future<Map<String, dynamic>> post({required String endPoint}) async {
     var response = await _dio.post('$baseUrl$endPoint');
+    return response.data;
+  }
 
+  Future<Map<String, dynamic>> postUrlEncoded(
+      {required String endPoint, required dataParameter}) async {
+    final data = dataParameter;
+    var response = await _dio.post(
+      '$baseUrl$endPoint',
+      data: data,
+      options: Options(
+        contentType: Headers.formUrlEncodedContentType,
+      ),
+    );
     return response.data;
   }
 }

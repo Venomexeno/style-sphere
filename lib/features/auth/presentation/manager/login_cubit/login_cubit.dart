@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce/features/auth/domain/entities/token_entity.dart';
-import 'package:ecommerce/features/auth/domain/use_cases/fetch_token_use_case.dart';
+import 'package:ecommerce/features/auth/domain/entities/login_entities/login_entity.dart';
+import 'package:ecommerce/features/auth/domain/use_cases/login_use_cases/fetch_token_use_case.dart';
 import 'package:equatable/equatable.dart';
 
 part 'login_state.dart';

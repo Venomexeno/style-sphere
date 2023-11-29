@@ -6,10 +6,14 @@ class TextFieldPasswordWidget extends StatefulWidget {
     super.key,
     required this.controller,
     this.validator,
+    required this.labelText,
+    required this.hintText,
   });
 
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final String labelText;
+  final String hintText;
 
   @override
   State<TextFieldPasswordWidget> createState() =>
@@ -41,13 +45,13 @@ class _TextFieldPasswordWidgetState extends State<TextFieldPasswordWidget> {
             isObscureText ? Icons.visibility_off : Icons.visibility,
           ),
         ),
-        labelText: "Password",
+        labelText: widget.labelText,
         labelStyle: TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
           fontSize: 22.sp,
         ),
-        hintText: "Enter your password",
+        hintText: widget.labelText,
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.grey,

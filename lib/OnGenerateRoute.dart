@@ -1,25 +1,54 @@
 import 'package:ecommerce/core/constants/app_routes.dart';
+import 'package:ecommerce/core/functions/service_locator.dart';
 import 'package:ecommerce/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/check_email_cubit/check_email_cubit.dart';
+import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/sign_up_cubit/sign_up_cubit.dart';
+import 'package:ecommerce/features/auth/presentation/pages/auth_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/login_page.dart';
+import 'package:ecommerce/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'core/utils/functions/service_locator.dart';
-
 class OnGenerateRoute {
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
+      case AppRoutes.authPageRoute:
+        return materialBuilder(
+          widget: const AuthPage(),
+          settings: settings,
+        );
+
       case AppRoutes.loginPageRoute:
         return materialBuilder(
-            widget: BlocProvider<LoginCubit>(
-              create: (context) => sl<LoginCubit>(),
-              child: const LoginPage(),
-            ),
-            settings: settings);
+          widget: BlocProvider<LoginCubit>(
+            create: (context) => sl<LoginCubit>(),
+            child: const LoginPage(),
+          ),
+          settings: settings,
+        );
+
+      case AppRoutes.signUpPageRoute:
+        return materialBuilder(
+          widget: MultiBlocProvider(
+            providers: [
+              BlocProvider<CheckEmailCubit>(
+                create: (context) => sl<CheckEmailCubit>(),
+              ),
+              BlocProvider<SignUpCubit>(
+                create: (context) => sl<SignUpCubit>(),
+              ),
+            ],
+            child: const SignUpPage(),
+          ),
+          settings: settings,
+        );
 
       case AppRoutes.homePageRoute:
-        return materialBuilder(widget: const HomePage(), settings: settings);
+        return materialBuilder(
+          widget: HomePage(token: settings.arguments as String),
+          settings: settings,
+        );
 
       default:
         return materialBuilder(

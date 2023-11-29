@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class TokenEntity extends Equatable {
+class LoginEntity extends Equatable {
   final String accessTokenEntity;
   final String refreshTokenEntity;
 
-  const TokenEntity({
+  const LoginEntity({
     required this.accessTokenEntity,
     required this.refreshTokenEntity,
   });

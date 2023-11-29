@@ -1,4 +1,4 @@
-// import 'package:ecommerce/features/auth/domain/entities/token_entity.dart';
+// import 'package:ecommerce/features/auth/domain/entities/login_entity.dart';
 //
 // abstract class LoginLocalDataSource {
 //   LoginEntity fetchToken();

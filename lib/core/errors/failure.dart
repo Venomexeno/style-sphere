@@ -47,7 +47,7 @@ class ServerFailure extends Failure {
       return ServerFailure(
           'there is problem with server , please try again later');
     } else if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['message']);
+      return ServerFailure('Error');
     } else {
       return ServerFailure('There was an error please try again');
     }

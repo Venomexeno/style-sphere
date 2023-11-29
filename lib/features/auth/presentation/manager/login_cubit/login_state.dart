@@ -12,7 +12,7 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
-  final TokenEntity token;
+  final LoginEntity token;
 
   const LoginSuccess(this.token);
 }

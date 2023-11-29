@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce/core/errors/failure.dart';
-import 'package:ecommerce/features/auth/data/data_sources/remote_data_source/login_remote_data_source/login_remote_data_source.dart';
-import 'package:ecommerce/features/auth/domain/entities/token_entity.dart';
-import 'package:ecommerce/features/auth/domain/repositories/login_repo.dart';
-import 'package:ecommerce/features/auth/domain/use_cases/fetch_token_use_case.dart';
+import 'package:ecommerce/features/auth/data/data_sources/login_data_source/remote_data_source/login_remote_data_source.dart';
+import 'package:ecommerce/features/auth/domain/entities/login_entities/login_entity.dart';
+import 'package:ecommerce/features/auth/domain/repositories/login_repositories/login_repo.dart';
+import 'package:ecommerce/features/auth/domain/use_cases/login_use_cases/fetch_token_use_case.dart';
 
 class LoginRepoImpl extends LoginRepo {
   final LoginRemoteDataSource loginRemoteDataSource;
@@ -14,7 +14,7 @@ class LoginRepoImpl extends LoginRepo {
   });
 
   @override
-  Future<Either<Failure, TokenEntity>> fetchToken(
+  Future<Either<Failure, LoginEntity>> fetchToken(
       LoginParameters parameters
       ) async {
     try {

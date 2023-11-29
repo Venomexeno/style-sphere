@@ -73,6 +73,8 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                   ),
                   const SizedBox(height: 10),
                   TextFieldPasswordWidget(
+                    labelText:'Password',
+                    hintText: 'Enter your password',
                     controller: _passwordController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
@@ -83,7 +85,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                       }
                       return null;
                     },
-                  )
+                  ),
                 ],
               ),
             ),
@@ -92,7 +94,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               listener: (context, state) {
                 if (state is LoginSuccess) {
                   Navigator.pushReplacementNamed(
-                      context, AppRoutes.homePageRoute);
+                      context, AppRoutes.homePageRoute,arguments: state.token.accessTokenEntity);
                 }
                 if (state is LoginFailure) {
                   final snackBar = SnackBar(
