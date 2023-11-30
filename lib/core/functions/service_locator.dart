@@ -13,8 +13,12 @@ import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/sign
 import 'package:ecommerce/features/home/data/data_sources/remote_data_source/home_remote_data_source.dart';
 import 'package:ecommerce/features/home/data/repositories/home_repo_impl.dart';
 import 'package:ecommerce/features/home/domain/repositories/home_repo.dart';
+import 'package:ecommerce/features/home/domain/use_cases/fetch_category_use_case.dart';
 import 'package:ecommerce/features/home/domain/use_cases/fetch_new_arrivals_use_case.dart';
+import 'package:ecommerce/features/home/domain/use_cases/fetch_user_use_case.dart';
+import 'package:ecommerce/features/home/presentation/manager/categories_cubit/categories_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
+import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -31,6 +35,8 @@ class ServiceLocator {
 
     // Home Cubit
     sl.registerFactory<NewArrivalsCubit>(() => NewArrivalsCubit(sl.call()));
+    sl.registerFactory<UserCubit>(() => UserCubit(sl.call()));
+    sl.registerFactory<CategoriesCubit>(() => CategoriesCubit(sl.call()));
 
     //-------------------------------------------------------------------------------------------------//
     ///UseCase
@@ -47,6 +53,10 @@ class ServiceLocator {
     //Home use case
     sl.registerLazySingleton<FetchNewArrivalsUseCase>(
             () => FetchNewArrivalsUseCase(sl.call()));
+    sl.registerLazySingleton<FetchUserUseCase>(
+            () => FetchUserUseCase(sl.call()));
+    sl.registerLazySingleton<FetchCategoryUseCase>(
+            () => FetchCategoryUseCase(sl.call()));
 
 
     //-------------------------------------------------------------------------------------------------//

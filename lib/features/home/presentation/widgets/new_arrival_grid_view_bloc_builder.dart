@@ -1,10 +1,10 @@
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
-import 'package:ecommerce/features/home/presentation/widgets/new_arrivals_grid_view.dart';
+import 'package:ecommerce/features/home/presentation/widgets/new_arrival_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewArrivalsGridViewBlocBuilder extends StatelessWidget {
-  const NewArrivalsGridViewBlocBuilder({
+class NewArrivalGridViewBlocBuilder extends StatelessWidget {
+  const NewArrivalGridViewBlocBuilder({
     super.key,
   });
 
@@ -13,7 +13,7 @@ class NewArrivalsGridViewBlocBuilder extends StatelessWidget {
     return BlocBuilder<NewArrivalsCubit, NewArrivalsState>(
       builder: (context, state) {
         if (state is NewArrivalsSuccess) {
-          return NewArrivalsGridView(
+          return NewArrivalGridView(
             newArrivalsEntity: state.newArrivals,
           );
         } else if (state is NewArrivalsFailure) {
