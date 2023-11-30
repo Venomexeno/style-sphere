@@ -11,7 +11,7 @@ import 'package:ecommerce/features/auth/domain/use_cases/sign_up_use_cases/sign_
 class SignUpRepoImpl extends SignUpRepo {
   final SignUpRemoteDataSource signUpRemoteDataSource;
 
-  SignUpRepoImpl({required this.signUpRemoteDataSource});
+  SignUpRepoImpl(this.signUpRemoteDataSource);
 
   @override
   Future<Either<Failure, CheckEmailEntity>> checkEmail(

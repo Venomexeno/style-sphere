@@ -6,6 +6,7 @@ import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/sign
 import 'package:ecommerce/features/auth/presentation/pages/auth_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/login_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/sign_up_page.dart';
+import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
 import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +47,10 @@ class OnGenerateRoute {
 
       case AppRoutes.homePageRoute:
         return materialBuilder(
-          widget: HomePage(token: settings.arguments as String),
+          widget: BlocProvider<NewArrivalsCubit>(
+            create: (context) => sl<NewArrivalsCubit>()..fetchNewArrivals(),
+            child: HomePage(token: settings.arguments as String),
+          ),
           settings: settings,
         );
 

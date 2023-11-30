@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TextFieldPasswordWidget extends StatefulWidget {
-  const TextFieldPasswordWidget({
+class CustomTextFieldPasswordFormWidget extends StatefulWidget {
+  const CustomTextFieldPasswordFormWidget({
     super.key,
     required this.controller,
     this.validator,
@@ -16,11 +16,11 @@ class TextFieldPasswordWidget extends StatefulWidget {
   final String hintText;
 
   @override
-  State<TextFieldPasswordWidget> createState() =>
-      _TextFieldPasswordWidgetState();
+  State<CustomTextFieldPasswordFormWidget> createState() =>
+      _CustomTextFieldPasswordFormWidgetState();
 }
 
-class _TextFieldPasswordWidgetState extends State<TextFieldPasswordWidget> {
+class _CustomTextFieldPasswordFormWidgetState extends State<CustomTextFieldPasswordFormWidget> {
   bool isObscureText = true;
 
   @override

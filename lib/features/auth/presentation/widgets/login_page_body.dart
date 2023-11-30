@@ -1,6 +1,6 @@
 import 'package:ecommerce/core/constants/app_routes.dart';
-import 'package:ecommerce/core/constants/text_field_passowrd_widget.dart';
-import 'package:ecommerce/core/constants/text_form_field_widget.dart';
+import 'package:ecommerce/core/widgets/custom_text_field_password_form_widget.dart';
+import 'package:ecommerce/core/widgets/custom_text_field_form_widget.dart';
 import 'package:ecommerce/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,7 +55,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               key: _formKey,
               child: Column(
                 children: [
-                  TextFieldFormWidget(
+                  CustomTextFieldFormWidget(
                     controller: _emailController,
                     hintText: 'Enter your email',
                     labelText: 'Email',
@@ -72,7 +72,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                     },
                   ),
                   const SizedBox(height: 10),
-                  TextFieldPasswordWidget(
+                  CustomTextFieldPasswordFormWidget(
                     labelText:'Password',
                     hintText: 'Enter your password',
                     controller: _passwordController,
