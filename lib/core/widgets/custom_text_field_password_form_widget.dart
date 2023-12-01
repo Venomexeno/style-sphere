@@ -6,13 +6,13 @@ class CustomTextFieldPasswordFormWidget extends StatefulWidget {
     super.key,
     required this.controller,
     this.validator,
-    required this.labelText,
+    this.labelText,
     required this.hintText,
   });
 
   final TextEditingController controller;
   final String? Function(String?)? validator;
-  final String labelText;
+  final String? labelText;
   final String hintText;
 
   @override
@@ -51,7 +51,7 @@ class _CustomTextFieldPasswordFormWidgetState extends State<CustomTextFieldPassw
           fontWeight: FontWeight.bold,
           fontSize: 22.sp,
         ),
-        hintText: widget.labelText,
+        hintText: widget.hintText,
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.grey,

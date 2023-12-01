@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/constants/app_routes.dart';
+import 'package:ecommerce/core/widgets/custom_elevated_button_widget.dart';
 import 'package:ecommerce/core/widgets/custom_text_field_password_form_widget.dart';
 import 'package:ecommerce/core/widgets/custom_text_field_form_widget.dart';
 import 'package:ecommerce/features/auth/presentation/manager/login_cubit/login_cubit.dart';
@@ -73,15 +74,12 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                   ),
                   const SizedBox(height: 10),
                   CustomTextFieldPasswordFormWidget(
-                    labelText:'Password',
+                    labelText: 'Password',
                     hintText: 'Enter your password',
                     controller: _passwordController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
                         return 'Please Enter a Password';
-                      }
-                      if (value.length < 6) {
-                        return 'Password must contain 6 characters at least';
                       }
                       return null;
                     },
@@ -94,7 +92,8 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               listener: (context, state) {
                 if (state is LoginSuccess) {
                   Navigator.pushReplacementNamed(
-                      context, AppRoutes.homePageRoute,arguments: state.token.accessTokenEntity);
+                      context, AppRoutes.homePageRoute,
+                      arguments: state.token.accessTokenEntity);
                 }
                 if (state is LoginFailure) {
                   final snackBar = SnackBar(
@@ -110,13 +109,8 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                 if (state is LoginLoading) {
                   return const Center(child: CircularProgressIndicator());
                 }
-                return ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(double.maxFinite, 80.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.r),
-                    ),
-                  ),
+                return CustomElevatedButtonWidget(
+                  buttonText: 'Login',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       BlocProvider.of<LoginCubit>(context).fetchToken(
@@ -124,15 +118,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                         password: _passwordController.text,
                       );
                     } else {}
-                  },
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.sp,
-                    ),
-                  ),
-                );
+                  },);
               },
             ),
           ],

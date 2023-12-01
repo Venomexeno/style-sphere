@@ -1,7 +1,7 @@
 import 'package:ecommerce/core/widgets/custom_search_form_widget.dart';
 import 'package:ecommerce/features/home/presentation/manager/categories_cubit/categories_cubit.dart';
 import 'package:ecommerce/features/home/presentation/widgets/banner_list_view.dart';
-import 'package:ecommerce/features/home/presentation/widgets/cached_network_image_bloc_builder.dart';
+import 'package:ecommerce/features/home/presentation/widgets/home_avatar_cached_network_image_bloc_builder.dart';
 import 'package:ecommerce/features/home/presentation/widgets/new_arrival_grid_view_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +41,7 @@ class HomePageBody extends StatelessWidget {
             elevation: 0,
             backgroundColor: Colors.transparent,
             actions: const [
-              CachedNetworkImageBlocBuilder(),
+              HomeAvatarCachedNetworkImageBlocBuilder(),
             ],
           ),
         ),

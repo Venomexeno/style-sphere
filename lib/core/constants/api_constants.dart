@@ -18,7 +18,8 @@ class ApiConstants
   //Users
   static const checkEmail = '${baseUrl}users/is-available';
   static const signUp = '${baseUrl}users';
-  static getSingleUser(id) => '${baseUrl}users';
+  static getSingleUser(id) => '${baseUrl}users$id';
+
 
   //Categories
   static const getAllCategories = '${baseUrl}categories';

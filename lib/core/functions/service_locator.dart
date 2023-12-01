@@ -19,6 +19,11 @@ import 'package:ecommerce/features/home/domain/use_cases/fetch_user_use_case.dar
 import 'package:ecommerce/features/home/presentation/manager/categories_cubit/categories_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:ecommerce/features/settings/data/data_sources/remote_data_source/settings_remote_data_source.dart';
+import 'package:ecommerce/features/settings/data/repositories/settings_repo_impl.dart';
+import 'package:ecommerce/features/settings/domain/repositories/settings_repo.dart';
+import 'package:ecommerce/features/settings/domain/use_cases/update_user_use_case.dart';
+import 'package:ecommerce/features/settings/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -38,6 +43,9 @@ class ServiceLocator {
     sl.registerFactory<UserCubit>(() => UserCubit(sl.call()));
     sl.registerFactory<CategoriesCubit>(() => CategoriesCubit(sl.call()));
 
+    //Settings Cubit
+    sl.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(sl.call()));
+
     //-------------------------------------------------------------------------------------------------//
     ///UseCase
     //login use case
@@ -46,18 +54,20 @@ class ServiceLocator {
 
     //signup use case
     sl.registerLazySingleton<CheckEmailUseCase>(
-            () => CheckEmailUseCase(sl.call()));
-    sl.registerLazySingleton<SignUpUseCase>(
-            () => SignUpUseCase(sl.call()));
+        () => CheckEmailUseCase(sl.call()));
+    sl.registerLazySingleton<SignUpUseCase>(() => SignUpUseCase(sl.call()));
 
     //Home use case
     sl.registerLazySingleton<FetchNewArrivalsUseCase>(
-            () => FetchNewArrivalsUseCase(sl.call()));
+        () => FetchNewArrivalsUseCase(sl.call()));
     sl.registerLazySingleton<FetchUserUseCase>(
-            () => FetchUserUseCase(sl.call()));
+        () => FetchUserUseCase(sl.call()));
     sl.registerLazySingleton<FetchCategoryUseCase>(
-            () => FetchCategoryUseCase(sl.call()));
+        () => FetchCategoryUseCase(sl.call()));
 
+    //Settings use case
+    sl.registerLazySingleton<UpdateUserUseCase>(
+        () => UpdateUserUseCase(sl.call()));
 
     //-------------------------------------------------------------------------------------------------//
     ///Repository
@@ -66,12 +76,13 @@ class ServiceLocator {
         () => LoginRepoImpl(loginRemoteDataSource: sl.call()));
 
     //signup Repo
-    sl.registerLazySingleton<SignUpRepo>(
-            () => SignUpRepoImpl(sl.call()));
+    sl.registerLazySingleton<SignUpRepo>(() => SignUpRepoImpl(sl.call()));
 
-    //Home Repo
-    sl.registerLazySingleton<HomeRepo>(
-            () => HomeRepoImpl(sl.call()));
+    //home Repo
+    sl.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(sl.call()));
+
+    //settings Repo
+    sl.registerLazySingleton<SettingsRepo>(() => SettingsRepoImpl(sl.call()));
 
     //-------------------------------------------------------------------------------------------------//
     ///DataSource
@@ -81,12 +92,14 @@ class ServiceLocator {
 
     //signup data source
     sl.registerLazySingleton<SignUpRemoteDataSource>(
-            () => SignUpRemoteDataSourceImpl());
+        () => SignUpRemoteDataSourceImpl());
 
-    //Home data source
+    //home data source
     sl.registerLazySingleton<HomeRemoteDataSource>(
-            () => HomeRemoteDataSourceImpl());
+        () => HomeRemoteDataSourceImpl());
 
-
+    //settings data source
+    sl.registerLazySingleton<SettingsRemoteDataSource>(
+        () => SettingsRemoteDataSourceImpl());
   }
 }

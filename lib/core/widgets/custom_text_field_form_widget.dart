@@ -8,14 +8,14 @@ class CustomTextFieldFormWidget extends StatelessWidget {
     required this.textInputType,
     required this.hintText,
     required this.controller,
-    required this.labelText,
+    this.labelText,
   });
 
   final String? Function(String?)? validator;
   final TextInputType textInputType;
   final String hintText;
   final TextEditingController controller;
-  final String labelText;
+  final String? labelText;
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/constants/app_routes.dart';
+import 'package:ecommerce/core/widgets/custom_elevated_button_widget.dart';
 import 'package:ecommerce/core/widgets/custom_text_field_password_form_widget.dart';
 import 'package:ecommerce/core/widgets/custom_text_field_form_widget.dart';
 import 'package:ecommerce/core/widgets/custom_snack_bar_widget.dart';
@@ -127,7 +128,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30.r)),
                               content: Padding(
-                                padding: EdgeInsets.all(20),
+                                padding: const EdgeInsets.all(20),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.min,
@@ -182,7 +183,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                         );
                       }
                       if (state is SignUpFailure) {
-                        final snackBar = SnackBarWidget(text: state.errMessage);
+                        final snackBar = CustomSnackBarWidget(text: state.errMessage);
                         ScaffoldMessenger.of(context)
                             .showSnackBar(snackBar as SnackBar);
                       }
@@ -210,7 +211,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                         }
                         if (state is CheckEmailFailure) {
                           final snackBar =
-                              SnackBarWidget(text: state.errMessage);
+                              CustomSnackBarWidget(text: state.errMessage);
                           ScaffoldMessenger.of(context)
                               .showSnackBar(snackBar as SnackBar);
                         }
@@ -220,26 +221,14 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                           return const Center(
                               child: CircularProgressIndicator());
                         }
-                        return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size(double.maxFinite, 80.h),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.r),
-                            ),
-                          ),
+                        return CustomElevatedButtonWidget(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               BlocProvider.of<CheckEmailCubit>(context)
                                   .checkEmail(email: _emailController.text);
                             } else {}
                           },
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.sp,
-                            ),
-                          ),
+                          buttonText: 'Sign Up',
                         );
                       },
                     ),

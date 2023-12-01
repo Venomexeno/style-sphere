@@ -6,10 +6,13 @@ import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/sign
 import 'package:ecommerce/features/auth/presentation/pages/auth_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/login_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/sign_up_page.dart';
+import 'package:ecommerce/features/home/domain/entities/user_entity.dart';
 import 'package:ecommerce/features/home/presentation/manager/categories_cubit/categories_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
+import 'package:ecommerce/features/settings/presentation/manager/update_user_cubit/update_user_cubit.dart';
+import 'package:ecommerce/features/settings/presentation/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,15 +52,26 @@ class OnGenerateRoute {
           widget: MultiBlocProvider(
             providers: [
               BlocProvider<UserCubit>(
-                  create: (context) => sl<UserCubit>()
+                  create: (context) =>
+                  sl<UserCubit>()
                     ..fetchUser(token: settings.arguments as String)),
               BlocProvider<NewArrivalsCubit>(
                   create: (context) =>
-                      sl<NewArrivalsCubit>()..fetchNewArrivals()),
+                  sl<NewArrivalsCubit>()
+                    ..fetchNewArrivals()),
               BlocProvider<CategoriesCubit>(
                   create: (context) => sl<CategoriesCubit>()),
             ],
             child: const HomePage(),
+          ),
+          settings: settings,
+        );
+
+      case AppRoutes.settingsPageRoute:
+        return materialBuilder(
+          widget: BlocProvider<UpdateUserCubit>(
+            create: (context) => sl<UpdateUserCubit>(),
+            child: SettingsPage(userEntity: settings.arguments as UserEntity),
           ),
           settings: settings,
         );
