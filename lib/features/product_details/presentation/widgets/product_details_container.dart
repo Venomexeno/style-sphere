@@ -6,7 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductDetailsContainer extends StatelessWidget {
   const ProductDetailsContainer({
     super.key,
+    required this.title,
+    required this.description,
+    required this.price,
   });
+
+  final String title;
+  final String description;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -25,32 +32,20 @@ class ProductDetailsContainer extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding:
-              const EdgeInsets.only(top: 25, left: 25, right: 25),
+              padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Roller Rabbit',
-                            style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Vlado Odelle Dress',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xff666666),
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.55,
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                              fontSize: 20.sp, fontWeight: FontWeight.bold),
+                        ),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -64,8 +59,7 @@ class ProductDetailsContainer extends StatelessWidget {
                               borderRadius: BorderRadius.circular(40.r),
                             ),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 GestureDetector(
                                   onTap: () {},
@@ -90,8 +84,7 @@ class ProductDetailsContainer extends StatelessWidget {
                           Text(
                             'Available in stock',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12.sp),
+                                fontWeight: FontWeight.bold, fontSize: 12.sp),
                           ),
                         ],
                       ),
@@ -121,7 +114,7 @@ class ProductDetailsContainer extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Get a little lift from these Sam Edelman sandals featuring ruched straps and leather lace-up ties, while a braided jute sole makes a fresh statement for summer.',
+                    description,
                     style: TextStyle(
                       fontSize: 12.sp,
                       color: const Color(0xff666666),
@@ -155,7 +148,7 @@ class ProductDetailsContainer extends StatelessWidget {
                                 color: const Color(0xffAAAAAA)),
                           ),
                           Text(
-                            '\$198.00',
+                            '\$$price',
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,

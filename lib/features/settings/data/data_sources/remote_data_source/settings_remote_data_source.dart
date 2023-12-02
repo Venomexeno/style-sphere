@@ -11,7 +11,6 @@ abstract class SettingsRemoteDataSource {
 class SettingsRemoteDataSourceImpl extends SettingsRemoteDataSource {
   @override
   Future<UpdateUserEntity> updateUser(UpdateUserParameters parameters) async {
-    print(ApiConstants.getSingleUser('/${parameters.id}'));
 
     final response = await Dio().put(
       ApiConstants.getSingleUser('/${parameters.id}'),
@@ -24,7 +23,6 @@ class SettingsRemoteDataSourceImpl extends SettingsRemoteDataSource {
         'password': parameters.password,
       },
     );
-    print(response.data);
     return UpdateUserModel.fromJson(response.data);
   }
 }

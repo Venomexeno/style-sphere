@@ -25,6 +25,7 @@ class CategoryProductsGridView extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         return CustomColumnShowProduct(
+          id: categoryProducts[index].idEntity,
           imageUrl: categoryProducts[index].imagesEntity[0],
           price: categoryProducts[index].priceEntity,
           name: categoryProducts[index].titleEntity,

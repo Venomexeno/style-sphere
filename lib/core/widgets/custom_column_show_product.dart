@@ -10,18 +10,21 @@ class CustomColumnShowProduct extends StatelessWidget {
     required this.name,
     required this.description,
     required this.price,
+    required this.id,
   });
 
   final String imageUrl;
   final String name;
   final String description;
   final num price;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.productDetailsPageRoute);
+        Navigator.pushNamed(context, AppRoutes.productDetailsPageRoute,
+            arguments: id);
       },
       child: LayoutBuilder(
         builder: (context, constraints) {

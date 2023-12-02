@@ -24,11 +24,11 @@ class NewArrivalGridView extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         return CustomColumnShowProduct(
+          id: newArrivalsEntity[index].idEntity,
           imageUrl: newArrivalsEntity[index].imagesEntity[0],
           price: newArrivalsEntity[index].priceEntity,
           name: newArrivalsEntity[index].titleEntity,
           description: newArrivalsEntity[index].descriptionEntity,
-
         );
       },
     );

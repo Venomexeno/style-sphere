@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 
 class ProductDetailsImages extends StatelessWidget {
   const ProductDetailsImages({
-    super.key,
+    super.key, required this.imageUrl,
   });
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: 'https://i.imgur.com/QkIa5tT.jpeg',
+      imageUrl: imageUrl,
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.515,
       fit: BoxFit.fill,

@@ -14,6 +14,7 @@ import 'package:ecommerce/features/home/presentation/manager/categories_cubit/ca
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/fetch_product_details_cubit/fetch_product_details_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/pages/product_details_page.dart';
 import 'package:ecommerce/features/settings/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:ecommerce/features/settings/presentation/pages/settings_page.dart';
@@ -94,11 +95,16 @@ class OnGenerateRoute {
           settings: settings,
         );
 
+
       case AppRoutes.productDetailsPageRoute:
         return materialBuilder(
-          widget: const ProductDetailsPage(),
+          widget: BlocProvider<FetchProductDetailsCubit>(
+            create: (context) => sl<FetchProductDetailsCubit>()..fetchProductDetails(id: settings.arguments as int),
+            child: const ProductDetailsPage(),
+          ),
           settings: settings,
         );
+
 
       default:
         return materialBuilder(
