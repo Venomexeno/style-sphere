@@ -14,6 +14,7 @@ import 'package:ecommerce/features/home/presentation/manager/categories_cubit/ca
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
+import 'package:ecommerce/features/product_details/presentation/pages/product_details_page.dart';
 import 'package:ecommerce/features/settings/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:ecommerce/features/settings/presentation/pages/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -68,18 +69,15 @@ class OnGenerateRoute {
           settings: settings,
         );
 
-      // case AppRoutes.categoryProductsPageRoute:
-      //   return materialBuilder(
-      //     widget: BlocProvider<CategoryProductsCubit>(
-      //       create: (context) {
-      //         return sl<CategoryProductsCubit>()
-      //           ..fetchCategoryProducts(id: id);
-      //       },
-      //       child: CategoryProductsPage(
-      //           categoryTitle:),
-      //     ),
-      //     settings: settings,
-      //   );
+      case AppRoutes.settingsPageRoute:
+        return materialBuilder(
+          widget: BlocProvider<UpdateUserCubit>(
+            create: (context) => sl<UpdateUserCubit>(),
+            child: SettingsPage(userEntity: settings.arguments as UserEntity),
+          ),
+          settings: settings,
+        );
+
       case AppRoutes.categoryProductsPageRoute:
         return MaterialPageRoute(
           builder: (context) {
@@ -96,12 +94,9 @@ class OnGenerateRoute {
           settings: settings,
         );
 
-      case AppRoutes.settingsPageRoute:
+      case AppRoutes.productDetailsPageRoute:
         return materialBuilder(
-          widget: BlocProvider<UpdateUserCubit>(
-            create: (context) => sl<UpdateUserCubit>(),
-            child: SettingsPage(userEntity: settings.arguments as UserEntity),
-          ),
+          widget: const ProductDetailsPage(),
           settings: settings,
         );
 
