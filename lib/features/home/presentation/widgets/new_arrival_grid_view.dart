@@ -1,5 +1,5 @@
 import 'package:ecommerce/features/home/domain/entities/new_arrivals_entity.dart';
-import 'package:ecommerce/features/home/presentation/widgets/new_arrival_grid_view_item.dart';
+import 'package:ecommerce/core/widgets/custom_column_show_product.dart';
 import 'package:flutter/material.dart';
 
 class NewArrivalGridView extends StatelessWidget {
@@ -23,7 +23,7 @@ class NewArrivalGridView extends StatelessWidget {
         mainAxisSpacing: 10,
       ),
       itemBuilder: (context, index) {
-        return NewArrivalGridViewItem(
+        return CustomColumnShowProduct(
           imageUrl: newArrivalsEntity[index].imagesEntity[0],
           price: newArrivalsEntity[index].priceEntity,
           name: newArrivalsEntity[index].titleEntity,

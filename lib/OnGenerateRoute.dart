@@ -6,6 +6,9 @@ import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/sign
 import 'package:ecommerce/features/auth/presentation/pages/auth_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/login_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/sign_up_page.dart';
+import 'package:ecommerce/features/category_products/presentation/manager/category_products_cubit/category_products_cubit.dart';
+import 'package:ecommerce/features/category_products/presentation/pages/category_products_page.dart';
+import 'package:ecommerce/features/home/domain/entities/category_entity.dart';
 import 'package:ecommerce/features/home/domain/entities/user_entity.dart';
 import 'package:ecommerce/features/home/presentation/manager/categories_cubit/categories_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
@@ -52,18 +55,44 @@ class OnGenerateRoute {
           widget: MultiBlocProvider(
             providers: [
               BlocProvider<UserCubit>(
-                  create: (context) =>
-                  sl<UserCubit>()
+                  create: (context) => sl<UserCubit>()
                     ..fetchUser(token: settings.arguments as String)),
               BlocProvider<NewArrivalsCubit>(
                   create: (context) =>
-                  sl<NewArrivalsCubit>()
-                    ..fetchNewArrivals()),
+                      sl<NewArrivalsCubit>()..fetchNewArrivals()),
               BlocProvider<CategoriesCubit>(
                   create: (context) => sl<CategoriesCubit>()),
             ],
             child: const HomePage(),
           ),
+          settings: settings,
+        );
+
+      // case AppRoutes.categoryProductsPageRoute:
+      //   return materialBuilder(
+      //     widget: BlocProvider<CategoryProductsCubit>(
+      //       create: (context) {
+      //         return sl<CategoryProductsCubit>()
+      //           ..fetchCategoryProducts(id: id);
+      //       },
+      //       child: CategoryProductsPage(
+      //           categoryTitle:),
+      //     ),
+      //     settings: settings,
+      //   );
+      case AppRoutes.categoryProductsPageRoute:
+        return MaterialPageRoute(
+          builder: (context) {
+            final CategoryEntity argument =
+                settings.arguments as CategoryEntity;
+            return BlocProvider<CategoryProductsCubit>(
+              create: (context) => sl<CategoryProductsCubit>()
+                ..fetchCategoryProducts(id: argument.idEntity),
+              child: CategoryProductsPage(
+                categoryTitle: argument.nameEntity,
+              ),
+            );
+          },
           settings: settings,
         );
 
@@ -101,8 +130,11 @@ class ErrorPage extends StatelessWidget {
   }
 }
 
-MaterialPageRoute materialBuilder(
-    {required Widget widget, required RouteSettings settings}) {
+MaterialPageRoute materialBuilder({
+  required Widget widget,
+  required RouteSettings settings,
+  dynamic argument,
+}) {
   return MaterialPageRoute(
     builder: (context) => widget,
     settings: settings,

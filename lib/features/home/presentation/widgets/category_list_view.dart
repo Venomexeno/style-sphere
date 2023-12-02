@@ -18,8 +18,7 @@ class CategoryListView extends StatelessWidget {
       itemCount: categoryEntity.length,
       itemBuilder: (context, index) {
         return  CategoryListViewItem(
-          name:categoryEntity[index].nameEntity,
-          id:categoryEntity[index].idEntity,
+          categoryEntity: categoryEntity[index],
         );
       },
 

@@ -10,6 +10,11 @@ import 'package:ecommerce/features/auth/domain/use_cases/sign_up_use_cases/sign_
 import 'package:ecommerce/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/check_email_cubit/check_email_cubit.dart';
 import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/sign_up_cubit/sign_up_cubit.dart';
+import 'package:ecommerce/features/category_products/data/data_sources/remote_data_source/category_products_remote_data_source.dart';
+import 'package:ecommerce/features/category_products/data/repositories/category_products_repo_impl.dart';
+import 'package:ecommerce/features/category_products/domain/repositories/category_products_repo.dart';
+import 'package:ecommerce/features/category_products/domain/use_cases/fetch_category_products_use_case.dart';
+import 'package:ecommerce/features/category_products/presentation/manager/category_products_cubit/category_products_cubit.dart';
 import 'package:ecommerce/features/home/data/data_sources/remote_data_source/home_remote_data_source.dart';
 import 'package:ecommerce/features/home/data/repositories/home_repo_impl.dart';
 import 'package:ecommerce/features/home/domain/repositories/home_repo.dart';
@@ -31,20 +36,24 @@ final sl = GetIt.instance;
 class ServiceLocator {
   void init() {
     /// Cubit
-    // login Cubit
+    // login cubit
     sl.registerFactory<LoginCubit>(() => LoginCubit(sl.call()));
 
-    // signup Cubit
+    //signup Cubit
     sl.registerFactory<CheckEmailCubit>(() => CheckEmailCubit(sl.call()));
     sl.registerFactory<SignUpCubit>(() => SignUpCubit(sl.call()));
 
-    // Home Cubit
+    //home cubit
     sl.registerFactory<NewArrivalsCubit>(() => NewArrivalsCubit(sl.call()));
     sl.registerFactory<UserCubit>(() => UserCubit(sl.call()));
     sl.registerFactory<CategoriesCubit>(() => CategoriesCubit(sl.call()));
 
-    //Settings Cubit
+    //settings cubit
     sl.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(sl.call()));
+
+    //category products cubit
+    sl.registerFactory<CategoryProductsCubit>(
+        () => CategoryProductsCubit(sl.call()));
 
     //-------------------------------------------------------------------------------------------------//
     ///UseCase
@@ -57,7 +66,7 @@ class ServiceLocator {
         () => CheckEmailUseCase(sl.call()));
     sl.registerLazySingleton<SignUpUseCase>(() => SignUpUseCase(sl.call()));
 
-    //Home use case
+    //home use case
     sl.registerLazySingleton<FetchNewArrivalsUseCase>(
         () => FetchNewArrivalsUseCase(sl.call()));
     sl.registerLazySingleton<FetchUserUseCase>(
@@ -65,24 +74,32 @@ class ServiceLocator {
     sl.registerLazySingleton<FetchCategoryUseCase>(
         () => FetchCategoryUseCase(sl.call()));
 
-    //Settings use case
+    //settings use case
     sl.registerLazySingleton<UpdateUserUseCase>(
         () => UpdateUserUseCase(sl.call()));
 
+    //category products use case
+    sl.registerLazySingleton<FetchCategoryProductsUseCase>(
+        () => FetchCategoryProductsUseCase(sl.call()));
+
     //-------------------------------------------------------------------------------------------------//
     ///Repository
-    //login Repo
+    //login repo
     sl.registerLazySingleton<LoginRepo>(
         () => LoginRepoImpl(loginRemoteDataSource: sl.call()));
 
-    //signup Repo
+    //signup repo
     sl.registerLazySingleton<SignUpRepo>(() => SignUpRepoImpl(sl.call()));
 
-    //home Repo
+    //home repo
     sl.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(sl.call()));
 
-    //settings Repo
+    //settings repo
     sl.registerLazySingleton<SettingsRepo>(() => SettingsRepoImpl(sl.call()));
+
+    //category products repo
+    sl.registerLazySingleton<CategoryProductsRepo>(
+        () => CategoryProductsRepoImpl(sl.call()));
 
     //-------------------------------------------------------------------------------------------------//
     ///DataSource
@@ -101,5 +118,9 @@ class ServiceLocator {
     //settings data source
     sl.registerLazySingleton<SettingsRemoteDataSource>(
         () => SettingsRemoteDataSourceImpl());
+
+    //category products data source
+    sl.registerLazySingleton<CategoryProductsRemoteDataSource>(
+        () => CategoryProductsRemoteDataSourceImpl());
   }
 }

@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NewArrivalGridViewItem extends StatelessWidget {
-  const NewArrivalGridViewItem({
+class CustomColumnShowProduct extends StatelessWidget {
+  const CustomColumnShowProduct({
     super.key,
     required this.imageUrl,
     required this.name,
@@ -48,7 +48,7 @@ class NewArrivalGridViewItem extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style:
-                    TextStyle(fontSize: 12.sp, color: const Color(0xff666666)),
+                TextStyle(fontSize: 12.sp, color: const Color(0xff666666)),
               ),
               Text(
                 '$price \$',

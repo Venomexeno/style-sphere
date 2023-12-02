@@ -14,6 +14,7 @@ class ApiConstants
   static const createProduct = '${baseUrl}products';
   static getSingleProduct(id) => '${baseUrl}products/$id';
   static updateSingleProduct(id) => '${baseUrl}products/$id';
+  static getAllProductsByCategory(id) => '${baseUrl}categories/$id/products';
 
   //Users
   static const checkEmail = '${baseUrl}users/is-available';
