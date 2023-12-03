@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class ProductDetailsPageBody extends StatelessWidget {
   const ProductDetailsPageBody({
-    super.key, required this.productDetails,
+    super.key,
+    required this.productDetails,
   });
 
   final ProductDetailsEntity productDetails;
@@ -17,13 +18,13 @@ class ProductDetailsPageBody extends StatelessWidget {
       height: double.infinity,
       child: Stack(
         children: [
-          ProductDetailsImages(imageUrl: productDetails.imagesEntity[0]),
+          ProductDetailsImages(imageUrl: productDetails.imagesEntity),
           Positioned(
             bottom: 0,
             child: ProductDetailsContainer(
-              title: productDetails.titleEntity,
-              description: productDetails.descriptionEntity,
               price: productDetails.priceEntity,
+              description: productDetails.descriptionEntity,
+              title: productDetails.titleEntity,
             ),
           ),
         ],

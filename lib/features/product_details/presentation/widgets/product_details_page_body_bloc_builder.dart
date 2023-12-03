@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailsPageBodyBlocBuilder extends StatelessWidget {
-  const ProductDetailsPageBodyBlocBuilder({super.key});
+  const ProductDetailsPageBodyBlocBuilder({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

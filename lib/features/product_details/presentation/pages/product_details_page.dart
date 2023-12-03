@@ -1,7 +1,7 @@
+import 'package:ecommerce/features/product_details/presentation/widgets/product_details_page_body_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ecommerce/features/product_details/presentation/widgets/product_details_page_body_bloc_builder.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   const ProductDetailsPage({super.key});
@@ -49,7 +49,8 @@ class ProductDetailsPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: ProductDetailsPageBodyBlocBuilder(),
+      body: const ProductDetailsPageBodyBlocBuilder(),
     );
   }
 }
+
