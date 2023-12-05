@@ -6,4 +6,5 @@ class AppRoutes {
   static const String settingsPageRoute = '/settings';
   static const String categoryProductsPageRoute = '/categoryProducts';
   static const String productDetailsPageRoute = '/productDetails';
+  static const String cartPageRoute = '/cart';
 }

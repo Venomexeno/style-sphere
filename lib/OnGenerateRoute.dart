@@ -6,6 +6,7 @@ import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/sign
 import 'package:ecommerce/features/auth/presentation/pages/auth_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/login_page.dart';
 import 'package:ecommerce/features/auth/presentation/pages/sign_up_page.dart';
+import 'package:ecommerce/features/cart/presentation/pages/cart_page.dart';
 import 'package:ecommerce/features/category_products/presentation/manager/category_products_cubit/category_products_cubit.dart';
 import 'package:ecommerce/features/category_products/presentation/pages/category_products_page.dart';
 import 'package:ecommerce/features/home/domain/entities/category_entity.dart';
@@ -114,6 +115,12 @@ class OnGenerateRoute {
             ],
             child: const ProductDetailsPage(),
           ),
+          settings: settings,
+        );
+
+      case AppRoutes.cartPageRoute:
+        return materialBuilder(
+          widget: const CartPage(),
           settings: settings,
         );
 

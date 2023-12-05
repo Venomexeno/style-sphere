@@ -10,6 +10,7 @@ import 'package:ecommerce/features/auth/domain/use_cases/sign_up_use_cases/sign_
 import 'package:ecommerce/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/check_email_cubit/check_email_cubit.dart';
 import 'package:ecommerce/features/auth/presentation/manager/sign_up_cubits/sign_up_cubit/sign_up_cubit.dart';
+import 'package:ecommerce/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:ecommerce/features/category_products/data/data_sources/remote_data_source/category_products_remote_data_source.dart';
 import 'package:ecommerce/features/category_products/data/repositories/category_products_repo_impl.dart';
 import 'package:ecommerce/features/category_products/domain/repositories/category_products_repo.dart';
@@ -68,6 +69,10 @@ class ServiceLocator {
     sl.registerFactory<ProductSizeSelectorCubit>(
         () => ProductSizeSelectorCubit());
     sl.registerFactory<ProductQuantityCubit>(() => ProductQuantityCubit());
+
+    //cart Cubit
+    sl.registerFactory<CartCubit>(() => CartCubit());
+
     //-------------------------------------------------------------------------------------------------//
     ///UseCase
     //login use case

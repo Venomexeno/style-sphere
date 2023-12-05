@@ -2,6 +2,7 @@ import 'package:ecommerce/OnGenerateRoute.dart';
 import 'package:ecommerce/core/constants/app_routes.dart';
 import 'package:ecommerce/core/functions/service_locator.dart';
 import 'package:ecommerce/core/utils/simple_bloc_observer.dart';
+import 'package:ecommerce/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,19 +25,24 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          onGenerateRoute: OnGenerateRoute.routes,
-          initialRoute: AppRoutes.authPageRoute,
-          title: 'Flutter Demo',
-          theme: ThemeData.light().copyWith(
-            primaryColor: Colors.black,
-            colorScheme: ThemeData().colorScheme.copyWith(
-                  primary: Colors.black,
-                ),
-            textTheme:
-                GoogleFonts.poppinsTextTheme(ThemeData.light().textTheme),
+        return BlocProvider<CartCubit>(
+          create: (context) => sl<CartCubit>(),
+          child: MaterialApp(
+            onGenerateRoute: OnGenerateRoute.routes,
+            initialRoute: AppRoutes.authPageRoute,
+            title: 'Flutter Demo',
+            theme: ThemeData.light().copyWith(
+              primaryColor: Colors.black,
+              colorScheme: ThemeData().colorScheme.copyWith(
+                primary: Colors.black,
+              ),
+              textTheme:
+              GoogleFonts.poppinsTextTheme(ThemeData
+                  .light()
+                  .textTheme),
+            ),
+            debugShowCheckedModeBanner: false,
           ),
-          debugShowCheckedModeBanner: false,
         );
       },
     );

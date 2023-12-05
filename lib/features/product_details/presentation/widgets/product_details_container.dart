@@ -1,6 +1,8 @@
 import 'package:ecommerce/core/widgets/custom_elevated_button_widget.dart';
-import 'package:ecommerce/features/product_details/presentation/manager/product_quantity_cubit/product_quantity_cubit.dart';
+import 'package:ecommerce/features/cart/domain/entities/product_entity.dart';
+import 'package:ecommerce/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/product_size_selector_cubit/product_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/widgets/product_quantity_bloc_builder.dart';
 import 'package:ecommerce/features/product_details/presentation/widgets/product_size_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,14 +11,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProductDetailsContainer extends StatelessWidget {
   const ProductDetailsContainer({
     super.key,
+    required this.id,
     required this.title,
     required this.description,
     required this.price,
+    required this.imageUrl,
   });
 
+  final int id;
   final String title;
   final String description;
-  final int price;
+  final num price;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +67,7 @@ class ProductDetailsContainer extends StatelessWidget {
                               color: const Color(0xffEEEEEE),
                               borderRadius: BorderRadius.circular(40.r),
                             ),
-                            child: ProductQuantityBlocBuilder(),
+                            child: const ProductQuantityBlocBuilder(),
                           ),
                           const SizedBox(height: 5),
                           Text(
@@ -142,9 +148,22 @@ class ProductDetailsContainer extends StatelessWidget {
                       Flexible(
                         child: CustomElevatedButtonWidget(
                           onPressed: () {
-                            final selectedSize =
-                                context.read<ProductSizeSelectorCubit>().state;
-                            print(selectedSize);
+                            context.read<CartCubit>().addToCart(
+                                  ProductEntity(
+                                    id: id,
+                                    name: title,
+                                    imageUrl: imageUrl,
+                                    price: price,
+                                    size: context
+                                        .read<ProductSizeSelectorCubit>()
+                                        .state,
+                                  ),
+                                );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Product added to cart'),
+                              ),
+                            );
                           },
                           widget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -170,49 +189,6 @@ class ProductDetailsContainer extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class ProductQuantityBlocBuilder extends StatelessWidget {
-  const ProductQuantityBlocBuilder({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ProductQuantityCubit, ProductQuantityState>(
-      builder: (context, state) {
-        int quantity = 1;
-        if (state is ProductQuantityInitial) {
-          quantity = state.quantity;
-        } else if (state is ProductQuantityLoaded) {
-          quantity = state.quantity;
-        }
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () =>
-                  context.read<ProductQuantityCubit>().decrementQuantity(),
-              child: const Icon(
-                Icons.remove,
-              ),
-            ),
-            Text(
-              '$quantity',
-              style: TextStyle(fontSize: 16.sp),
-            ),
-            GestureDetector(
-              onTap: () =>
-                  context.read<ProductQuantityCubit>().incrementQuantity(),
-              child: const Icon(
-                Icons.add,
-              ),
-            ),
-          ],
-        );
-      },
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:ecommerce/features/category_products/domain/entities/category_pr
 class CategoryProductsModel extends CategoryProductsEntity {
   final int id;
   final String title;
-  final int price;
+  final num price;
   final String description;
   final List<String> images;
 

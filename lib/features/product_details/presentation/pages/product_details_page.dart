@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/constants/app_routes.dart';
 import 'package:ecommerce/features/product_details/presentation/widgets/product_details_page_body_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,7 +34,7 @@ class ProductDetailsPage extends StatelessWidget {
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, AppRoutes.cartPageRoute);
                 },
                 child: UnconstrainedBox(
                   child: SvgPicture.asset(
@@ -53,4 +54,3 @@ class ProductDetailsPage extends StatelessWidget {
     );
   }
 }
-

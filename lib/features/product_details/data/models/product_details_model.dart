@@ -3,7 +3,7 @@ import 'package:ecommerce/features/product_details/domain/entities/product_detai
 class ProductDetailsModel extends ProductDetailsEntity {
   final int id;
   final String title;
-  final int price;
+  final num price;
   final String description;
   final List<String> images;
 

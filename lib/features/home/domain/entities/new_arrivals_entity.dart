@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class NewArrivalsEntity extends Equatable {
   final int idEntity;
   final String titleEntity;
-  final int priceEntity;
+  final num priceEntity;
   final String descriptionEntity;
   final List<String> imagesEntity;
 
