@@ -160,7 +160,7 @@ class ProductDetailsContainer extends StatelessWidget {
                                   ),
                                 );
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                 content: Text('Product added to cart'),
                               ),
                             );
