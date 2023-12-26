@@ -21,7 +21,7 @@ class CategoryProductsGridViewBlocBuilder extends StatelessWidget {
         } else if (state is CategoryProductsLoading) {
           return const Center(child: CircularProgressIndicator());
         } else {
-          return Text('data');
+          return const Text('data');
         }
       },
     );

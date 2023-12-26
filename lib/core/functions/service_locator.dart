@@ -30,8 +30,10 @@ import 'package:ecommerce/features/product_details/data/repositories/product_det
 import 'package:ecommerce/features/product_details/domain/repositories/product_details_repo.dart';
 import 'package:ecommerce/features/product_details/domain/use_cases/fetch_product_details_use_case.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/fetch_product_details_cubit/fetch_product_details_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/product_color_cubit/product_color_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/product_quantity_cubit/product_quantity_cubit.dart';
-import 'package:ecommerce/features/product_details/presentation/manager/product_size_selector_cubit/product_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/shirt_size_selector_cubit/shirt_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/shoes_size_selector_cubit/shoes_size_selector_cubit.dart';
 import 'package:ecommerce/features/settings/data/data_sources/remote_data_source/settings_remote_data_source.dart';
 import 'package:ecommerce/features/settings/data/repositories/settings_repo_impl.dart';
 import 'package:ecommerce/features/settings/domain/repositories/settings_repo.dart';
@@ -66,8 +68,12 @@ class ServiceLocator {
     //product details cubit
     sl.registerFactory<FetchProductDetailsCubit>(
         () => FetchProductDetailsCubit(sl()));
-    sl.registerFactory<ProductSizeSelectorCubit>(
-        () => ProductSizeSelectorCubit());
+    sl.registerFactory<ShirtSizeSelectorCubit>(
+        () => ShirtSizeSelectorCubit());
+    sl.registerFactory<ShoesSizeSelectorCubit>(
+            () => ShoesSizeSelectorCubit());
+    sl.registerFactory<ProductColorSelectorCubit>(
+            () => ProductColorSelectorCubit());
     sl.registerFactory<ProductQuantityCubit>(() => ProductQuantityCubit());
 
     //cart Cubit

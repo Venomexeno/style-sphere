@@ -1,3 +1,4 @@
+import 'package:ecommerce/features/product_details/data/models/product_category_model.dart';
 import 'package:ecommerce/features/product_details/domain/entities/product_details_entity.dart';
 
 class ProductDetailsModel extends ProductDetailsEntity {
@@ -6,14 +7,17 @@ class ProductDetailsModel extends ProductDetailsEntity {
   final num price;
   final String description;
   final List<String> images;
+  final ProductCategoryModel productCategory;
 
   const ProductDetailsModel({
+    required this.productCategory,
     required this.id,
     required this.title,
     required this.price,
     required this.description,
     required this.images,
   }) : super(
+          productCategoryEntity: productCategory,
           idEntity: id,
           titleEntity: title,
           priceEntity: price,
@@ -27,6 +31,7 @@ class ProductDetailsModel extends ProductDetailsEntity {
         title: json["title"],
         price: json["price"],
         description: json["description"],
+        productCategory: ProductCategoryModel.fromJson(json["category"]),
         images: List<String>.from(json["images"].map((x) => x)),
       );
 }

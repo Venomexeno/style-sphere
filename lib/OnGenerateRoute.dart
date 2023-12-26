@@ -16,8 +16,10 @@ import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/
 import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/fetch_product_details_cubit/fetch_product_details_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/product_color_cubit/product_color_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/product_quantity_cubit/product_quantity_cubit.dart';
-import 'package:ecommerce/features/product_details/presentation/manager/product_size_selector_cubit/product_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/shirt_size_selector_cubit/shirt_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/shoes_size_selector_cubit/shoes_size_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/pages/product_details_page.dart';
 import 'package:ecommerce/features/settings/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:ecommerce/features/settings/presentation/pages/settings_page.dart';
@@ -105,8 +107,14 @@ class OnGenerateRoute {
               BlocProvider<ProductQuantityCubit>(
                 create: (context) => sl<ProductQuantityCubit>(),
               ),
-              BlocProvider<ProductSizeSelectorCubit>(
-                create: (context) => sl<ProductSizeSelectorCubit>(),
+              BlocProvider<ShirtSizeSelectorCubit>(
+                create: (context) => sl<ShirtSizeSelectorCubit>(),
+              ),
+              BlocProvider<ShoesSizeSelectorCubit>(
+                create: (context) => sl<ShoesSizeSelectorCubit>(),
+              ),
+              BlocProvider<ProductColorSelectorCubit>(
+                create: (context) => sl<ProductColorSelectorCubit>(),
               ),
               BlocProvider<FetchProductDetailsCubit>(
                 create: (context) => sl<FetchProductDetailsCubit>()

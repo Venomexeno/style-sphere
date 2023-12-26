@@ -1,11 +1,14 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 class ProductEntity extends Equatable {
   final int id;
   final String name;
   final String imageUrl;
   final num price;
-  final String size;
+  final dynamic size;
+  final Color color;
+  final String productType;
 
   const ProductEntity({
     required this.id,
@@ -13,6 +16,8 @@ class ProductEntity extends Equatable {
     required this.imageUrl,
     required this.price,
     required this.size,
+    required this.color,
+    required this.productType,
   });
 
   @override
@@ -22,5 +27,6 @@ class ProductEntity extends Equatable {
         imageUrl,
         price,
         size,
+        color,
       ];
 }

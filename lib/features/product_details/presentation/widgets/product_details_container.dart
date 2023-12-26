@@ -1,9 +1,13 @@
 import 'package:ecommerce/core/widgets/custom_elevated_button_widget.dart';
 import 'package:ecommerce/features/cart/domain/entities/product_entity.dart';
 import 'package:ecommerce/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
-import 'package:ecommerce/features/product_details/presentation/manager/product_size_selector_cubit/product_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/product_color_cubit/product_color_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/shirt_size_selector_cubit/shirt_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/shoes_size_selector_cubit/shoes_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/widgets/product_color_selector.dart';
 import 'package:ecommerce/features/product_details/presentation/widgets/product_quantity_bloc_builder.dart';
-import 'package:ecommerce/features/product_details/presentation/widgets/product_size_selector.dart';
+import 'package:ecommerce/features/product_details/presentation/widgets/shirt_size_selector.dart';
+import 'package:ecommerce/features/product_details/presentation/widgets/shoes_size_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +20,7 @@ class ProductDetailsContainer extends StatelessWidget {
     required this.description,
     required this.price,
     required this.imageUrl,
+    required this.productType,
   });
 
   final int id;
@@ -23,6 +28,7 @@ class ProductDetailsContainer extends StatelessWidget {
   final String description;
   final num price;
   final String imageUrl;
+  final String productType;
 
   @override
   Widget build(BuildContext context) {
@@ -80,15 +86,49 @@ class ProductDetailsContainer extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    'Size',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.sp,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  const ProductSizeSelector(),
+                  if (productType == 'Clothes') ...[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Size',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ShirtSizeSelector(),
+                            ProductColorSelector(),
+                          ],
+                        ),
+                      ],
+                    )
+                  ] else if (productType == 'Shoes') ...[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Size',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ShoesSizeSelector(),
+                            ProductColorSelector(),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
                   const SizedBox(
                     height: 10,
                   ),
@@ -154,9 +194,19 @@ class ProductDetailsContainer extends StatelessWidget {
                                     name: title,
                                     imageUrl: imageUrl,
                                     price: price,
-                                    size: context
-                                        .read<ProductSizeSelectorCubit>()
+                                    size: (productType == 'Clothes')
+                                        ? context
+                                            .read<ShirtSizeSelectorCubit>()
+                                            .state
+                                        : (productType == 'Shoes')
+                                            ? context
+                                                .read<ShoesSizeSelectorCubit>()
+                                                .state
+                                            : 0,
+                                    color: context
+                                        .read<ProductColorSelectorCubit>()
                                         .state,
+                                    productType: productType,
                                   ),
                                 );
                             ScaffoldMessenger.of(context).showSnackBar(

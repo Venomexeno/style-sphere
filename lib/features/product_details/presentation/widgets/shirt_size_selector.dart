@@ -1,4 +1,4 @@
-import 'package:ecommerce/features/product_details/presentation/manager/product_size_selector_cubit/product_size_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/shirt_size_selector_cubit/shirt_size_selector_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,12 +17,12 @@ class SizeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        final cubit = context.read<ProductSizeSelectorCubit>();
+        final cubit = context.read<ShirtSizeSelectorCubit>();
         cubit.selectSize(size);
       },
       child: SizedBox(
-        width: 55.h,
-        height: 55.h,
+        width: 60.h,
+        height: 60.h,
         child: Container(
           padding: EdgeInsets.all(12.r),
           decoration: BoxDecoration(
@@ -34,7 +34,7 @@ class SizeButton extends StatelessWidget {
             child: Text(
               size,
               style: TextStyle(
-                fontSize: 16.sp,
+                fontSize: 15.sp,
                 color: isSelected ? Colors.white : const Color(0xff888888),
               ),
             ),
@@ -45,8 +45,8 @@ class SizeButton extends StatelessWidget {
   }
 }
 
-class ProductSizeSelector extends StatelessWidget {
-  const ProductSizeSelector({super.key});
+class ShirtSizeSelector extends StatelessWidget {
+  const ShirtSizeSelector({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class ProductSizeSelector extends StatelessWidget {
         children: ['S', 'M', 'L', 'XL', 'XXL'].map((size) {
           return SizeButton(
             size: size,
-            isSelected: context.watch<ProductSizeSelectorCubit>().state == size,
+            isSelected: context.watch<ShirtSizeSelectorCubit>().state == size,
           );
         }).toList(),
       ),

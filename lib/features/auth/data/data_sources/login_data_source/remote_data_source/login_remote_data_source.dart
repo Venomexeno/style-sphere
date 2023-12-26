@@ -12,9 +12,13 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
   @override
   Future<LoginEntity> fetchToken(LoginParameters parameters) async {
     final response = await Dio().post(
-      ApiConstants.login(
-        parameters.email,
-        parameters.password,
+      ApiConstants.login,
+      data: <String, dynamic>{
+        "email": parameters.email,
+        "password": parameters.password,
+      },
+      options: Options(
+        contentType: Headers.jsonContentType,
       ),
     );
     return LoginModel.fromJson(response.data);

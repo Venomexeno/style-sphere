@@ -10,6 +10,10 @@ class CartCubit extends Cubit<List<CartItemEntity>> {
     return state.fold(0.0, (total, item) => total + item.totalPrice);
   }
 
+  int get totalItem {
+    return state.fold(0, (total, item) => total + item.quantity);
+  }
+
   void addToCart(ProductEntity product) {
     final existingItem = state.firstWhere(
           (item) => item.product == product,

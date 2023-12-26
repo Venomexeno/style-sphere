@@ -5,7 +5,7 @@ class ApiConstants
   static const baseUrl = "https://api.escuelajs.co/api/v1/";
 
   // Auth
-  static login(email,password) => '${baseUrl}auth/login?email=$email&password=$password';
+  static const login = '${baseUrl}auth/login';
   static const getUserWithSession = '${baseUrl}auth/profile';
 
   // Products

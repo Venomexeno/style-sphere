@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductSizeSelectorCubit extends Cubit<String> {
-  ProductSizeSelectorCubit() : super('S');
+class ShirtSizeSelectorCubit extends Cubit<String> {
+  ShirtSizeSelectorCubit() : super('S');
 
   void selectSize(String newSize) {
     emit(newSize);

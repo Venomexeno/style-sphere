@@ -22,6 +22,7 @@ class ProductDetailsPageBody extends StatelessWidget {
           Positioned(
             bottom: 0,
             child: ProductDetailsContainer(
+              productType: productDetails.productCategoryEntity.nameEntity,
               id: productDetails.idEntity,
               imageUrl: productDetails.imagesEntity[0],
               price: productDetails.priceEntity,
