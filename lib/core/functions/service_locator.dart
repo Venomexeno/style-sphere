@@ -34,6 +34,7 @@ import 'package:ecommerce/features/product_details/presentation/manager/product_
 import 'package:ecommerce/features/product_details/presentation/manager/product_quantity_cubit/product_quantity_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/shirt_size_selector_cubit/shirt_size_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/shoes_size_selector_cubit/shoes_size_selector_cubit.dart';
+import 'package:ecommerce/features/root/presentation/manager/bottom_navigation_cubit.dart';
 import 'package:ecommerce/features/settings/data/data_sources/remote_data_source/settings_remote_data_source.dart';
 import 'package:ecommerce/features/settings/data/repositories/settings_repo_impl.dart';
 import 'package:ecommerce/features/settings/domain/repositories/settings_repo.dart';
@@ -52,6 +53,9 @@ class ServiceLocator {
     //signup Cubit
     sl.registerFactory<CheckEmailCubit>(() => CheckEmailCubit(sl.call()));
     sl.registerFactory<SignUpCubit>(() => SignUpCubit(sl.call()));
+
+    //root cubit
+    sl.registerFactory<NavigationCubit>(() => NavigationCubit());
 
     //home cubit
     sl.registerFactory<NewArrivalsCubit>(() => NewArrivalsCubit(sl.call()));

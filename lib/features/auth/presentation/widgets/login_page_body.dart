@@ -92,7 +92,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               listener: (context, state) {
                 if (state is LoginSuccess) {
                   Navigator.pushReplacementNamed(
-                      context, AppRoutes.homePageRoute,
+                      context, AppRoutes.rootPageRoute,
                       arguments: state.token.accessTokenEntity);
                 }
                 if (state is LoginFailure) {

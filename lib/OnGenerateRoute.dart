@@ -21,6 +21,8 @@ import 'package:ecommerce/features/product_details/presentation/manager/product_
 import 'package:ecommerce/features/product_details/presentation/manager/shirt_size_selector_cubit/shirt_size_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/shoes_size_selector_cubit/shoes_size_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/pages/product_details_page.dart';
+import 'package:ecommerce/features/root/presentation/manager/bottom_navigation_cubit.dart';
+import 'package:ecommerce/features/root/presentation/pages/root_page.dart';
 import 'package:ecommerce/features/settings/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:ecommerce/features/settings/presentation/pages/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +37,16 @@ class OnGenerateRoute {
           settings: settings,
         );
 
+      case AppRoutes.rootPageRoute:
+        return materialBuilder(
+          widget: BlocProvider<NavigationCubit>(
+            create: (context) => sl<NavigationCubit>(),
+            child: RootPage(
+              token: settings.arguments as String,
+            ),
+          ),
+          settings: settings,
+        );
       case AppRoutes.loginPageRoute:
         return materialBuilder(
           widget: BlocProvider<LoginCubit>(
