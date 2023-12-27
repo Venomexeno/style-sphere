@@ -28,9 +28,9 @@ class HomeRepoImpl extends HomeRepo {
 
   @override
   Future<Either<Failure, UserEntity>> fetchUser(
-      FetchUserParameter parameter) async {
+      FetchUserParameters parameters) async {
     try {
-      var user = await homeRemoteDataSource.fetchUser(parameter);
+      var user = await homeRemoteDataSource.fetchUser(parameters);
       return right(user);
     } catch (e) {
       if (e is DioException) {

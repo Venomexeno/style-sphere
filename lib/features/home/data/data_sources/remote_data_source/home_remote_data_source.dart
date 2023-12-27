@@ -11,7 +11,7 @@ import 'package:ecommerce/features/home/domain/use_cases/fetch_user_use_case.dar
 abstract class HomeRemoteDataSource {
   Future<List<NewArrivalsEntity>> fetchNewArrivals();
 
-  Future<UserEntity> fetchUser(FetchUserParameter parameter);
+  Future<UserEntity> fetchUser(FetchUserParameters parameters);
 
   Future<List<CategoryEntity>> fetchCategories();
 }
@@ -28,10 +28,10 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   }
 
   @override
-  Future<UserEntity> fetchUser(FetchUserParameter parameter) async {
+  Future<UserEntity> fetchUser(FetchUserParameters parameters) async {
     final response = await Dio().get(ApiConstants.getUserWithSession,
         options:
-            Options(headers: {"Authorization": "Bearer ${parameter.token}"}));
+            Options(headers: {"Authorization": "Bearer ${parameters.token}"}));
     return UserModel.fromJson(response.data);
   }
 

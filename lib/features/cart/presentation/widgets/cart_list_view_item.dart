@@ -15,40 +15,29 @@ class CartListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12.0),
-      child: Container(
-        width: double.infinity,
-        height: 150.h,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 0.5,
-              blurRadius: 10,
-              offset: const Offset(0, 0.5),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(20.r),
+    return Dismissible(
+      background: Container(
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 16.0),
+        decoration: ShapeDecoration(
+          color: Colors.black,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
-        child: Dismissible(
-          key: UniqueKey(),
-          onDismissed: (direction) {
-            context
-                .read<CartCubit>()
-                .removeFromCart(cartItem.product);
-          },
-          direction: DismissDirection.endToStart,
-          background: Container(
-            alignment: Alignment.centerRight,
-            padding: const EdgeInsets.only(right: 16.0),
-            decoration: ShapeDecoration(
-              color: Colors.black,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.r)),
-            ),
-            child: const Icon(Icons.delete, color: Colors.white),
+        child: const Icon(Icons.delete, color: Colors.white),
+      ),
+      key: UniqueKey(),
+      onDismissed: (direction) {
+        context.read<CartCubit>().removeFromCart(cartItem.product);
+      },
+      direction: DismissDirection.endToStart,
+      child: SizedBox(
+        height: 150.h,
+        child: Card(
+          elevation: 2,
+          shadowColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -80,18 +69,14 @@ class CartListViewItem extends StatelessWidget {
                       cartItem.product.size == 0
                           ? Container()
                           : Text(
-                        'Size: ${cartItem.product.size}',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: const Color(0xff666666),
-                        ),
-                      ),
-                      if (cartItem.product.productType !=
-                          'Clothes' ||
-                          cartItem.product.productType !=
-                              'Shoes') ...[
-                        Container()
-                      ] else ...[
+                              'Size: ${cartItem.product.size}',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: const Color(0xff666666),
+                              ),
+                            ),
+                      if (cartItem.product.productType == 'Clothes' ||
+                          cartItem.product.productType == 'Shoes') ...[
                         Row(
                           children: [
                             Text(
@@ -112,6 +97,8 @@ class CartListViewItem extends StatelessWidget {
                             ),
                           ],
                         ),
+                      ] else ...[
+                        Container(),
                       ],
                       const Spacer(),
                       Row(
@@ -133,15 +120,14 @@ class CartListViewItem extends StatelessWidget {
                               borderRadius: BorderRadius.circular(40.r),
                             ),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 GestureDetector(
                                   onTap: () => context
                                       .read<CartCubit>()
                                       .decrementQuantity(
-                                    cartItem,
-                                  ),
+                                        cartItem,
+                                      ),
                                   child: const Icon(
                                     Icons.remove,
                                   ),
@@ -154,8 +140,8 @@ class CartListViewItem extends StatelessWidget {
                                   onTap: () => context
                                       .read<CartCubit>()
                                       .incrementQuantity(
-                                    cartItem,
-                                  ),
+                                        cartItem,
+                                      ),
                                   child: const Icon(
                                     Icons.add,
                                   ),

@@ -34,6 +34,11 @@ import 'package:ecommerce/features/product_details/presentation/manager/product_
 import 'package:ecommerce/features/product_details/presentation/manager/product_quantity_cubit/product_quantity_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/shirt_size_selector_cubit/shirt_size_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/shoes_size_selector_cubit/shoes_size_selector_cubit.dart';
+import 'package:ecommerce/features/profile/data/data_sources/remote_data_source/profile_remote_data_source.dart';
+import 'package:ecommerce/features/profile/data/repositories/profile_repo_impl.dart';
+import 'package:ecommerce/features/profile/domain/repositories/profile_repo.dart';
+import 'package:ecommerce/features/profile/domain/use_cases/fetch_profile_use_case.dart';
+import 'package:ecommerce/features/profile/presentation/manager/profile_cubit.dart';
 import 'package:ecommerce/features/root/presentation/manager/bottom_navigation_cubit.dart';
 import 'package:ecommerce/features/settings/data/data_sources/remote_data_source/settings_remote_data_source.dart';
 import 'package:ecommerce/features/settings/data/repositories/settings_repo_impl.dart';
@@ -80,8 +85,12 @@ class ServiceLocator {
             () => ProductColorSelectorCubit());
     sl.registerFactory<ProductQuantityCubit>(() => ProductQuantityCubit());
 
-    //cart Cubit
+    //cart cubit
     sl.registerFactory<CartCubit>(() => CartCubit());
+
+    //profile cubit
+    sl.registerFactory<ProfileCubit>(() => ProfileCubit(sl.call()));
+
 
     //-------------------------------------------------------------------------------------------------//
     ///UseCase
@@ -114,6 +123,10 @@ class ServiceLocator {
     sl.registerLazySingleton<FetchProductDetailsUseCase>(
         () => FetchProductDetailsUseCase(sl.call()));
 
+    //profile use case
+    sl.registerLazySingleton<FetchProfileUseCase>(
+            () => FetchProfileUseCase(sl.call()));
+
     //-------------------------------------------------------------------------------------------------//
     ///Repository
     //login repo
@@ -136,6 +149,10 @@ class ServiceLocator {
     //product details repo
     sl.registerLazySingleton<ProductDetailsRepo>(
         () => ProductDetailsRepoImpl(sl.call()));
+
+    //profile repo
+    sl.registerLazySingleton<ProfileRepo>(
+            () => ProfileRepoImpl(sl.call()));
 
     //-------------------------------------------------------------------------------------------------//
     ///DataSource
@@ -162,5 +179,9 @@ class ServiceLocator {
     //product details data source
     sl.registerLazySingleton<ProductDetailsRemoteDataSource>(
         () => ProductDetailsRemoteDataSourceImpl());
+
+    //profile data source
+    sl.registerLazySingleton<ProfileRemoteDataSource>(
+            () => ProfileRemoteDataSourceImpl());
   }
 }

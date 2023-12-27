@@ -17,7 +17,7 @@ class ProductDetailsPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: const EdgeInsets.only(right: 10, top: 15, left: 10),
+          padding: const EdgeInsets.only(right: 5, top: 15, left: 5),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,

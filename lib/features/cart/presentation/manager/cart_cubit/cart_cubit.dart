@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:ecommerce/features/cart/domain/entities/product_entity.dart';
 

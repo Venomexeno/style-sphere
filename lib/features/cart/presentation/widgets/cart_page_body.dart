@@ -16,7 +16,7 @@ class CartPageBody extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       slivers: [
         SliverPadding(
-          padding: const EdgeInsets.only(right: 25, top: 15, left: 25),
+          padding: const EdgeInsets.only(right: 20, top: 15, left: 20),
           sliver: SliverAppBar(
             leading: GestureDetector(
               onTap: () {

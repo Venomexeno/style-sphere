@@ -12,9 +12,9 @@ class CategoriesInitial extends CategoriesState {}
 class CategoriesLoading extends CategoriesState {}
 
 class CategoriesSuccess extends CategoriesState {
-  final List<CategoryEntity> Category;
+  final List<CategoryEntity> category;
 
-  const CategoriesSuccess(this.Category);
+  const CategoriesSuccess(this.category);
 }
 
 class CategoriesFailure extends CategoriesState {

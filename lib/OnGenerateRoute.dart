@@ -11,10 +11,6 @@ import 'package:ecommerce/features/category_products/presentation/manager/catego
 import 'package:ecommerce/features/category_products/presentation/pages/category_products_page.dart';
 import 'package:ecommerce/features/home/domain/entities/category_entity.dart';
 import 'package:ecommerce/features/home/domain/entities/user_entity.dart';
-import 'package:ecommerce/features/home/presentation/manager/categories_cubit/categories_cubit.dart';
-import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
-import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
-import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/fetch_product_details_cubit/fetch_product_details_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/product_color_cubit/product_color_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/product_quantity_cubit/product_quantity_cubit.dart';
@@ -65,24 +61,6 @@ class OnGenerateRoute {
               BlocProvider<SignUpCubit>(create: (context) => sl<SignUpCubit>()),
             ],
             child: const SignUpPage(),
-          ),
-          settings: settings,
-        );
-
-      case AppRoutes.homePageRoute:
-        return materialBuilder(
-          widget: MultiBlocProvider(
-            providers: [
-              BlocProvider<UserCubit>(
-                  create: (context) => sl<UserCubit>()
-                    ..fetchUser(token: settings.arguments as String)),
-              BlocProvider<NewArrivalsCubit>(
-                  create: (context) =>
-                      sl<NewArrivalsCubit>()..fetchNewArrivals()),
-              BlocProvider<CategoriesCubit>(
-                  create: (context) => sl<CategoriesCubit>()),
-            ],
-            child: const HomePage(),
           ),
           settings: settings,
         );

@@ -14,7 +14,7 @@ class CategoryListViewBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         if (state is CategoriesSuccess) {
           return  CategoryListView(
-            categoryEntity: state.Category,
+            categoryEntity: state.category,
           );
         } else if (state is CategoriesFailure) {
           return Center(

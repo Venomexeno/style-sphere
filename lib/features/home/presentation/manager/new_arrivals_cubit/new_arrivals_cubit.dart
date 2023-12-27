@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce/features/home/domain/entities/new_arrivals_entity.dart';
 import 'package:ecommerce/features/home/domain/use_cases/fetch_new_arrivals_use_case.dart';
 import 'package:equatable/equatable.dart';

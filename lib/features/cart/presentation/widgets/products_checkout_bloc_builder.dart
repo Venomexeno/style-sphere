@@ -27,7 +27,7 @@ class ProductsCheckoutBlocBuilder extends StatelessWidget {
                   'Total ($totalItem item):',
                   style: TextStyle(
                       fontSize: 16.sp,
-                      color: Color(0xff666666),
+                      color: const Color(0xff666666),
                       fontWeight: FontWeight.bold),
                 ),
                 Text(

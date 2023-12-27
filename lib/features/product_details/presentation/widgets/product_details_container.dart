@@ -87,45 +87,48 @@ class ProductDetailsContainer extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   if (productType == 'Clothes') ...[
-                    Column(
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Size',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ShirtSizeSelector(),
-                            ProductColorSelector(),
+                            Text(
+                              'Size',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+
+                            const ShirtSizeSelector(),
                           ],
                         ),
+                        const ProductColorSelector(),
                       ],
                     )
                   ] else if (productType == 'Shoes') ...[
-                    Column(
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Size',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ShoesSizeSelector(),
-                            ProductColorSelector(),
+                            Text(
+                              'Size',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            const ShoesSizeSelector(),
                           ],
                         ),
+                        const ProductColorSelector(),
                       ],
                     )
                   ],

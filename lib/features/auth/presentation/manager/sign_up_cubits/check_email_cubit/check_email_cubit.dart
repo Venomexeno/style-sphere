@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce/features/auth/domain/entities/sign_up_entities/check_email_entity.dart';
 import 'package:ecommerce/features/auth/domain/use_cases/sign_up_use_cases/check_email_use_case.dart';
 import 'package:equatable/equatable.dart';

@@ -24,20 +24,46 @@ class BottomNavigationBarScreen extends StatelessWidget {
         return Scaffold(
           body: screens[
               state is NavigationIndexChangedState ? state.selectedIndex : 0],
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex:
-                state is NavigationIndexChangedState ? state.selectedIndex : 0,
-            onTap: (index) {
-              cubit.navigateTo(index);
-            },
-            items: List.generate(
-              screens.length,
-              (index) => BottomNavigationBarItem(
-                label: "",
-                icon: Container(
-                  padding: EdgeInsets.only(left: 14.w),
-                  child: _buildIcon(index, state),
+          bottomNavigationBar: Theme(
+            data: Theme.of(context).copyWith(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(30.r),
+                  topLeft: Radius.circular(30.r),
+                ),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30.r),
+                  topRight: Radius.circular(30.r),
+                ),
+                child: BottomNavigationBar(
+                  backgroundColor: Colors.white,
+                  type: BottomNavigationBarType.fixed,
+                  currentIndex: state is NavigationIndexChangedState
+                      ? state.selectedIndex
+                      : 0,
+                  onTap: (index) {
+                    cubit.navigateTo(index);
+                  },
+                  items: List.generate(
+                    screens.length,
+                    (index) => BottomNavigationBarItem(
+                      label: "",
+                      icon: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.5.w),
+                        child: _buildIcon(index, state),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -60,8 +86,8 @@ class BottomNavigationBarScreen extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            height: 36.h,
-            width: 36.h,
+            height: isSelected ? 40.h : 16.h,
+            width: isSelected ? 35.h : 16.h,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: isSelected ? Colors.black : null,
@@ -90,7 +116,7 @@ class BottomNavigationBarScreen extends StatelessWidget {
                   screenNames[index],
                   overflow: TextOverflow.fade,
                   maxLines: 1,
-                  style:  TextStyle(
+                  style: TextStyle(
                     fontSize: 12.sp,
                     color: Colors.black,
                   ),

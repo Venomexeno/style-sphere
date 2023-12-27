@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: ThemeData.light().copyWith(
               primaryColor: Colors.black,
+              scaffoldBackgroundColor: Colors.white,
               colorScheme: ThemeData().colorScheme.copyWith(
                 primary: Colors.black,
               ),
