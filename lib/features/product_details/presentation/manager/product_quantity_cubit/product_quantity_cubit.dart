@@ -8,6 +8,10 @@ class ProductQuantityCubit extends Cubit<ProductQuantityState> {
 
   ProductQuantityCubit() : super(const ProductQuantityInitial(quantity: 1));
 
+  int get quantity {
+    return _quantity;
+  }
+
   void incrementQuantity() {
     _quantity++;
     emit(ProductQuantityLoaded(quantity: _quantity));

@@ -32,7 +32,7 @@ class CartListViewItem extends StatelessWidget {
       },
       direction: DismissDirection.endToStart,
       child: SizedBox(
-        height: 150.h,
+        height: 160.h,
         child: Card(
           elevation: 2,
           shadowColor: Colors.black,
@@ -60,6 +60,8 @@ class CartListViewItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         cartItem.product.name,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,

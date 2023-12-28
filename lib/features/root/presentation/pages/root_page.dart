@@ -3,6 +3,7 @@ import 'package:ecommerce/features/home/presentation/manager/categories_cubit/ca
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:ecommerce/features/home/presentation/pages/home_page.dart';
+import 'package:ecommerce/features/order/presentation/pages/order_page.dart';
 import 'package:ecommerce/features/profile/presentation/manager/profile_cubit.dart';
 import 'package:ecommerce/features/profile/presentation/pages/profile_page.dart';
 import 'package:ecommerce/features/root/presentation/manager/bottom_navigation_cubit.dart';
@@ -25,7 +26,6 @@ class RootPage extends StatelessWidget {
         icons: const [
           Icons.home,
           Icons.shopping_cart,
-          Icons.notifications,
           Icons.person,
         ],
         screens: [
@@ -42,32 +42,7 @@ class RootPage extends StatelessWidget {
             ],
             child: const HomePage(),
           ),
-          MultiBlocProvider(
-            providers: [
-              BlocProvider<UserCubit>(
-                  create: (context) =>
-                      sl<UserCubit>()..fetchUser(token: token)),
-              BlocProvider<NewArrivalsCubit>(
-                  create: (context) =>
-                      sl<NewArrivalsCubit>()..fetchNewArrivals()),
-              BlocProvider<CategoriesCubit>(
-                  create: (context) => sl<CategoriesCubit>()),
-            ],
-            child: const HomePage(),
-          ),
-          MultiBlocProvider(
-            providers: [
-              BlocProvider<UserCubit>(
-                  create: (context) =>
-                      sl<UserCubit>()..fetchUser(token: token)),
-              BlocProvider<NewArrivalsCubit>(
-                  create: (context) =>
-                      sl<NewArrivalsCubit>()..fetchNewArrivals()),
-              BlocProvider<CategoriesCubit>(
-                  create: (context) => sl<CategoriesCubit>()),
-            ],
-            child: const HomePage(),
-          ),
+          const OrderPage(),
           BlocProvider<ProfileCubit>(
             create: (context) => sl<ProfileCubit>()..fetchProfile(token: token),
             child: const ProfilePage(),
@@ -76,7 +51,6 @@ class RootPage extends StatelessWidget {
         screenNames: const [
           'Home',
           'Cart',
-          'Notifications',
           'Profile',
         ],
         cubit: context.read<NavigationCubit>(),

@@ -4,6 +4,7 @@ import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cub
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeAvatarCachedNetworkImageBlocBuilder extends StatelessWidget {
   const HomeAvatarCachedNetworkImageBlocBuilder({
@@ -39,7 +40,18 @@ class HomeAvatarCachedNetworkImageBlocBuilder extends StatelessWidget {
         } else if (state is UserFailure) {
           return Text(state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              width: 60.h,
+              height: 60.h,
+              decoration: BoxDecoration(
+                color: Colors.grey[300]!,
+                shape: BoxShape.circle,
+              ),
+            ),
+          );
         }
       },
     );

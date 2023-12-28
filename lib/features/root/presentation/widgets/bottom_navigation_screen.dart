@@ -59,7 +59,7 @@ class BottomNavigationBarScreen extends StatelessWidget {
                     (index) => BottomNavigationBarItem(
                       label: "",
                       icon: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.5.w),
+                        padding: EdgeInsets.symmetric(horizontal: 26.w),
                         child: _buildIcon(index, state),
                       ),
                     ),

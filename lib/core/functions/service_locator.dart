@@ -25,6 +25,7 @@ import 'package:ecommerce/features/home/domain/use_cases/fetch_user_use_case.dar
 import 'package:ecommerce/features/home/presentation/manager/categories_cubit/categories_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:ecommerce/features/order/presentation/manager/order_cubit.dart';
 import 'package:ecommerce/features/product_details/data/data_sources/remote_data_source/product_details_remote_data_source.dart';
 import 'package:ecommerce/features/product_details/data/repositories/product_details_repo_impl.dart';
 import 'package:ecommerce/features/product_details/domain/repositories/product_details_repo.dart';
@@ -91,6 +92,10 @@ class ServiceLocator {
     //profile cubit
     sl.registerFactory<ProfileCubit>(() => ProfileCubit(sl.call()));
 
+    //my order cubit
+    sl.registerFactory<OrderCubit>(() => OrderCubit());
+
+
 
     //-------------------------------------------------------------------------------------------------//
     ///UseCase
@@ -126,6 +131,7 @@ class ServiceLocator {
     //profile use case
     sl.registerLazySingleton<FetchProfileUseCase>(
             () => FetchProfileUseCase(sl.call()));
+
 
     //-------------------------------------------------------------------------------------------------//
     ///Repository

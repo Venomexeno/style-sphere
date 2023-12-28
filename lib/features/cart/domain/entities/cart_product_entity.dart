@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-class ProductEntity extends Equatable {
+class CartProductEntity extends Equatable {
   final int id;
   final String name;
   final String imageUrl;
@@ -10,7 +10,7 @@ class ProductEntity extends Equatable {
   final Color color;
   final String productType;
 
-  const ProductEntity({
+  const CartProductEntity({
     required this.id,
     required this.name,
     required this.imageUrl,

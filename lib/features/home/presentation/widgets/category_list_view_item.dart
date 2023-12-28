@@ -20,17 +20,22 @@ class CategoryListViewItem extends StatelessWidget {
             arguments: categoryEntity);
       },
       child: Container(
+        height: 70.h,
         decoration: BoxDecoration(
-            color: Colors.black, borderRadius: BorderRadius.circular(30)),
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(30),
+        ),
         padding: const EdgeInsets.symmetric(vertical: 15),
         width: double.infinity,
-        child: Text(
-          categoryEntity.nameEntity,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 18.sp,
-            color: Colors.white,
+        child: Center(
+          child: Text(
+            categoryEntity.nameEntity,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 18.sp,
+              color: Colors.white,
+            ),
           ),
         ),
       ),

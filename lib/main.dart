@@ -3,6 +3,7 @@ import 'package:ecommerce/core/constants/app_routes.dart';
 import 'package:ecommerce/core/functions/service_locator.dart';
 import 'package:ecommerce/core/utils/simple_bloc_observer.dart';
 import 'package:ecommerce/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:ecommerce/features/order/presentation/manager/order_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,8 +26,15 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       splitScreenMode: true,
       builder: (context, child) {
-        return BlocProvider<CartCubit>(
-          create: (context) => sl<CartCubit>(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<CartCubit>(
+              create: (context) => sl<CartCubit>(),
+            ),
+            BlocProvider<OrderCubit>(
+              create: (context) => sl<OrderCubit>(),
+            ),
+          ],
           child: MaterialApp(
             onGenerateRoute: OnGenerateRoute.routes,
             initialRoute: AppRoutes.authPageRoute,

@@ -1,6 +1,8 @@
 import 'package:ecommerce/core/widgets/custom_elevated_button_widget.dart';
 import 'package:ecommerce/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:ecommerce/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:ecommerce/features/order/domain/entities/order_product_entity.dart';
+import 'package:ecommerce/features/order/presentation/manager/order_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,10 +16,9 @@ class ProductsCheckoutBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, List<CartItemEntity>>(
       builder: (context, cartState) {
-        final totalItem =
-        context.select((CartCubit cubit) => cubit.totalItem);
+        final totalItem = context.select((CartCubit cubit) => cubit.totalItem);
         final totalAmount =
-        context.select((CartCubit cubit) => cubit.totalAmount);
+            context.select((CartCubit cubit) => cubit.totalAmount);
         return Column(
           children: [
             Row(
@@ -65,7 +66,27 @@ class ProductsCheckoutBlocBuilder extends StatelessWidget {
                       content: Text('Your cart is empty'),
                     ),
                   );
-                } else {}
+                } else {
+                  for (var orderIndex = 0;
+                      orderIndex < cartState.length;
+                      orderIndex++) {
+                    context.read<OrderCubit>().addOrder(
+                          OrderProductEntity(
+                            productType:
+                                cartState[orderIndex].product.productType,
+                            id: cartState[orderIndex].product.id,
+                            name: cartState[orderIndex].product.name,
+                            imageUrl: cartState[orderIndex].product.imageUrl,
+                            price: cartState[orderIndex].product.price *
+                                cartState[orderIndex].quantity,
+                            size: cartState[orderIndex].product.size,
+                            color: cartState[orderIndex].product.color,
+                            quantity: cartState[orderIndex].quantity,
+                          ),
+                        );
+                  }
+                  context.read<CartCubit>().clearCart();
+                }
               },
             ),
             const SizedBox(height: 15),

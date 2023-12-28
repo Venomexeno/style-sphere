@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce/features/cart/domain/entities/cart_item_entity.dart';
-import 'package:ecommerce/features/cart/domain/entities/product_entity.dart';
-
+import 'package:ecommerce/features/cart/domain/entities/cart_product_entity.dart';
 
 class CartCubit extends Cubit<List<CartItemEntity>> {
   CartCubit() : super([]);
@@ -14,23 +13,28 @@ class CartCubit extends Cubit<List<CartItemEntity>> {
     return state.fold(0, (total, item) => total + item.quantity);
   }
 
-  void addToCart(ProductEntity product) {
+  void addToCart({required CartProductEntity product, required int quantity}) {
     final existingItem = state.firstWhere(
-          (item) => item.product == product,
-      orElse: () => CartItemEntity(product: product),
+      (item) => item.product == product,
+      orElse: () => CartItemEntity(product: product, quantity: quantity),
     );
 
     if (state.contains(existingItem)) {
-      existingItem.quantity++;
+      existingItem.quantity += quantity;
     } else {
-      state.add(CartItemEntity(product: product));
+      state.add(CartItemEntity(product: product, quantity: quantity));
     }
 
     emit(List.from(state));
   }
 
-  void removeFromCart(ProductEntity product) {
+  void removeFromCart(CartProductEntity product) {
     state.removeWhere((item) => item.product == product);
+    emit(List.from(state));
+  }
+
+  void clearCart() {
+    state.clear();
     emit(List.from(state));
   }
 

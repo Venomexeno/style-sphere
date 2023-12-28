@@ -29,46 +29,44 @@ class CustomColumnShowProduct extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           double height = constraints.maxHeight;
-          return SizedBox(
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: CachedNetworkImage(
-                    height: height * 0.68,
-                    fit: BoxFit.fill,
-                    width: double.infinity,
-                    imageUrl: imageUrl,
-                  ),
+          return Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15.r),
+                child: CachedNetworkImage(
+                  height: height * 0.68,
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                  imageUrl: imageUrl,
                 ),
-                const Spacer(),
-                Text(
-                  name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14.sp,
-                  ),
+              ),
+              const Spacer(),
+              Text(
+                name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14.sp,
                 ),
-                Text(
-                  description,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontSize: 12.sp, color: const Color(0xff666666)),
+              ),
+              Text(
+                description,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontSize: 12.sp, color: const Color(0xff666666)),
+              ),
+              Text(
+                '$price \$',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14.sp,
                 ),
-                Text(
-                  '$price \$',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14.sp,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

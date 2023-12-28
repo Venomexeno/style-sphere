@@ -1,7 +1,8 @@
 import 'package:ecommerce/core/widgets/custom_elevated_button_widget.dart';
-import 'package:ecommerce/features/cart/domain/entities/product_entity.dart';
+import 'package:ecommerce/features/cart/domain/entities/cart_product_entity.dart';
 import 'package:ecommerce/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/product_color_cubit/product_color_selector_cubit.dart';
+import 'package:ecommerce/features/product_details/presentation/manager/product_quantity_cubit/product_quantity_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/shirt_size_selector_cubit/shirt_size_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/manager/shoes_size_selector_cubit/shoes_size_selector_cubit.dart';
 import 'package:ecommerce/features/product_details/presentation/widgets/product_color_selector.dart';
@@ -102,7 +103,6 @@ class ProductDetailsContainer extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 20),
-
                             const ShirtSizeSelector(),
                           ],
                         ),
@@ -192,7 +192,7 @@ class ProductDetailsContainer extends StatelessWidget {
                         child: CustomElevatedButtonWidget(
                           onPressed: () {
                             context.read<CartCubit>().addToCart(
-                                  ProductEntity(
+                                  product: CartProductEntity(
                                     id: id,
                                     name: title,
                                     imageUrl: imageUrl,
@@ -211,6 +211,9 @@ class ProductDetailsContainer extends StatelessWidget {
                                         .state,
                                     productType: productType,
                                   ),
+                                  quantity: context
+                                      .read<ProductQuantityCubit>()
+                                      .quantity,
                                 );
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

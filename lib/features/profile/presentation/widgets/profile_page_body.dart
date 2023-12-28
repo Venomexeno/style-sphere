@@ -1,7 +1,10 @@
 import 'package:ecommerce/features/profile/presentation/widgets/profile_button_row.dart';
 import 'package:ecommerce/features/profile/presentation/widgets/user_card_bloc_builder.dart';
+import 'package:ecommerce/features/root/presentation/manager/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfilePageBody extends StatelessWidget {
   const ProfilePageBody({super.key});
@@ -11,11 +14,23 @@ class ProfilePageBody extends StatelessWidget {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
-        const SliverPadding(
-          padding: EdgeInsets.only(right: 20, top: 15, left: 20),
+        SliverPadding(
+          padding: const EdgeInsets.only(right: 20, top: 15, left: 20),
           sliver: SliverAppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
+            leading: GestureDetector(
+              onTap: () {
+                context.read<NavigationCubit>().navigateTo(0);
+              },
+              child: UnconstrainedBox(
+                child: SvgPicture.asset(
+                  'assets/icons/back_arrow.svg',
+                  width: 50.h,
+                  height: 50.h,
+                ),
+              ),
+            ),
           ),
         ),
         SliverToBoxAdapter(
@@ -23,7 +38,7 @@ class ProfilePageBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 30.w),
             child: Column(
               children: [
-                UserCardBlocBuilder(),
+                const UserCardBlocBuilder(),
                 const SizedBox(height: 30),
                 Container(
                   padding:
@@ -58,4 +73,3 @@ class ProfilePageBody extends StatelessWidget {
     );
   }
 }
-

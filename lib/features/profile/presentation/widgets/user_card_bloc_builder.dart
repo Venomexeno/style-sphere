@@ -3,6 +3,7 @@ import 'package:ecommerce/features/profile/presentation/manager/profile_cubit.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 class UserCardBlocBuilder extends StatelessWidget {
   const UserCardBlocBuilder({
@@ -78,7 +79,19 @@ class UserCardBlocBuilder extends StatelessWidget {
         } else if (state is ProfileFailure) {
           return Center(child: Text(state.errMessage));
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              height: 100.h,
+              decoration: BoxDecoration(
+                color: Colors.grey[300]!,
+                borderRadius: BorderRadius.circular(15.r),
+
+              ),
+            ),
+          );
         }
       },
     );
