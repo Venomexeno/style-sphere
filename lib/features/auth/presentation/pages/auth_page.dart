@@ -6,8 +6,16 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: AuthPageBody(),
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/auth_background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: const AuthPageBody(),
+      ),
     );
   }
 }

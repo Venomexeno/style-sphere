@@ -37,9 +37,7 @@ class OnGenerateRoute {
         return materialBuilder(
           widget: BlocProvider<NavigationCubit>(
             create: (context) => sl<NavigationCubit>(),
-            child: RootPage(
-              token: settings.arguments as String,
-            ),
+            child: RootPage(),
           ),
           settings: settings,
         );

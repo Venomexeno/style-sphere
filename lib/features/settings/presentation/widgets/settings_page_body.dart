@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/constants/app_routes.dart';
+import 'package:ecommerce/core/utils/cache_helper.dart';
 import 'package:ecommerce/core/widgets/custom_elevated_button_widget.dart';
 import 'package:ecommerce/features/settings/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:ecommerce/features/settings/presentation/widgets/settings_avatar_cached_network_image.dart';
@@ -226,8 +227,10 @@ class _SettingsPageBodyState extends State<SettingsPageBody> {
                   ),
                   borderRadius: 15.r,
                   onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, AppRoutes.loginPageRoute, (route) => false);
+                    CacheHelper.saveData(key: 'token', value: '').then(
+                      (value) => Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoutes.authPageRoute, (route) => false),
+                    );
                   },
                 ),
               ),

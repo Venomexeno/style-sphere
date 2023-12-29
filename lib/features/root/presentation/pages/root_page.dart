@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/functions/service_locator.dart';
+import 'package:ecommerce/core/utils/cache_helper.dart';
 import 'package:ecommerce/features/home/presentation/manager/categories_cubit/categories_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/new_arrivals_cubit/new_arrivals_cubit.dart';
 import 'package:ecommerce/features/home/presentation/manager/user_cubit/user_cubit.dart';
@@ -12,12 +13,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RootPage extends StatelessWidget {
-  const RootPage({
+  RootPage({
     super.key,
-    required this.token,
   });
 
-  final String token;
+  final String token = CacheHelper.getData(key: 'token');
 
   @override
   Widget build(BuildContext context) {

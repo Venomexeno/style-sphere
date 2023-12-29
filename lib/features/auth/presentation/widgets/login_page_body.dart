@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/constants/app_routes.dart';
+import 'package:ecommerce/core/utils/cache_helper.dart';
 import 'package:ecommerce/core/widgets/custom_elevated_button_widget.dart';
 import 'package:ecommerce/core/widgets/custom_text_field_password_form_widget.dart';
 import 'package:ecommerce/core/widgets/custom_text_field_form_widget.dart';
@@ -91,9 +92,15 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
                 if (state is LoginSuccess) {
-                  Navigator.pushReplacementNamed(
-                      context, AppRoutes.rootPageRoute,
-                      arguments: state.token.accessTokenEntity);
+                  CacheHelper.saveData(
+                          key: 'token', value: state.token.accessTokenEntity)
+                      .then(
+                    (value) => Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      AppRoutes.rootPageRoute,
+                      (route) => false,
+                    ),
+                  );
                 }
                 if (state is LoginFailure) {
                   final snackBar = SnackBar(
@@ -118,7 +125,8 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                         password: _passwordController.text,
                       );
                     } else {}
-                  },);
+                  },
+                );
               },
             ),
           ],

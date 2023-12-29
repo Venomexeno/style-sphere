@@ -2,6 +2,7 @@ import 'package:ecommerce/OnGenerateRoute.dart';
 import 'package:ecommerce/core/constants/app_constants.dart';
 import 'package:ecommerce/core/constants/app_routes.dart';
 import 'package:ecommerce/core/functions/service_locator.dart';
+import 'package:ecommerce/core/utils/cache_helper.dart';
 import 'package:ecommerce/core/utils/simple_bloc_observer.dart';
 import 'package:ecommerce/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:ecommerce/features/category_products/domain/entities/category_products_entity.dart';
@@ -19,9 +20,13 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   ServiceLocator().init();
 
   Bloc.observer = SimpleBlocObserver();
+
+  await CacheHelper.init();
 
   await Hive.initFlutter();
   Hive.registerAdapter(NewArrivalsEntityAdapter());
@@ -38,11 +43,27 @@ void main() async {
   await Hive.openBox<ProductCategoryEntity>(kProductCategory);
   await Hive.openBox<CategoryProductsEntity>(kCategoryProducts);
 
-  runApp(const MyApp());
+  String token = CacheHelper.getData(key: 'token') ?? '';
+  String pageRoute;
+
+  if (token.isEmpty) {
+    pageRoute = AppRoutes.authPageRoute;
+  } else {
+    pageRoute = AppRoutes.rootPageRoute;
+  }
+
+  runApp(MyApp(
+    startRoute: pageRoute,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String startRoute;
+
+  const MyApp({
+    super.key,
+    required this.startRoute,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +83,7 @@ class MyApp extends StatelessWidget {
           ],
           child: MaterialApp(
             onGenerateRoute: OnGenerateRoute.routes,
-            initialRoute: AppRoutes.authPageRoute,
+            initialRoute: startRoute,
             title: 'Flutter Demo',
             theme: ThemeData.light().copyWith(
               primaryColor: Colors.black,

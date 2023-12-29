@@ -85,7 +85,58 @@ class ProductsCheckoutBlocBuilder extends StatelessWidget {
                           ),
                         );
                   }
-                  context.read<CartCubit>().clearCart();
+                  showDialog(
+                    barrierDismissible: false,
+
+                    context: context,
+                    builder: (context) {
+                      return WillPopScope(
+                        onWillPop: () async => false,
+                        child: AlertDialog(
+
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.r),
+                          ),
+
+                          title: Text(
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            'Successful!',
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  color: const Color(0xff666666),
+                                ),
+                                'You have successfully purchased your cart products!',
+                              ),
+                              const SizedBox(height: 15),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24.0, vertical: 12),
+                                child: CustomElevatedButtonWidget(
+                                  buttonText: 'Continue Shopping',
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    context.read<CartCubit>().clearCart();
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
                 }
               },
             ),
