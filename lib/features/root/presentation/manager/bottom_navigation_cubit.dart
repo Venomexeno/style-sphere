@@ -1,12 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
 
-part 'bottom_navigation_state.dart';
-
-class NavigationCubit extends Cubit<NavigationCubitState> {
-  NavigationCubit() : super(NavigationInitialState());
+class NavigationCubit extends Cubit<int> {
+  NavigationCubit() : super(0);
 
   void navigateTo(int index) {
-    emit(NavigationIndexChangedState(index));
+    emit(index);
   }
 }

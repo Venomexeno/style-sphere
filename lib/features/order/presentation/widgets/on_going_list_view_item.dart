@@ -48,14 +48,14 @@ class OnGoingListViewItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: width * 0.4,
+                                width: width * 0.35,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      maxLines: 2,
+                                      maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       orderProduct.name,
                                       style: TextStyle(
@@ -108,6 +108,8 @@ class OnGoingListViewItem extends StatelessWidget {
                                 ),
                               ),
                               Text(
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 '\$${orderProduct.price}',
                                 style: TextStyle(
                                   fontSize: 14.sp,

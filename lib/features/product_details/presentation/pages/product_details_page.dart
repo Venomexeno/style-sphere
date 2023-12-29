@@ -16,6 +16,7 @@ class ProductDetailsPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        toolbarHeight: 70.h,
         title: Padding(
           padding: const EdgeInsets.only(right: 5, top: 15, left: 5),
           child: Row(

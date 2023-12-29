@@ -6,7 +6,7 @@ class OrderCubit extends Cubit<List<OrderProductEntity>> {
 
   void addOrder(OrderProductEntity newOrder) {
     final List<OrderProductEntity> updatedOrders = List.from(state)
-      ..add(newOrder);
+      ..insert(0, newOrder);
     emit(updatedOrders);
   }
 }
