@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce/core/constants/api_constants.dart';
+import 'package:ecommerce/core/constants/app_constants.dart';
+import 'package:ecommerce/core/functions/home_functions/save_category_data.dart';
+import 'package:ecommerce/core/functions/home_functions/save_new_arrivals_data.dart';
 import 'package:ecommerce/features/home/data/models/category_model.dart';
 import 'package:ecommerce/features/home/data/models/new_arrivals_model.dart';
 import 'package:ecommerce/features/home/data/models/user_model.dart';
@@ -20,11 +23,14 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<NewArrivalsEntity>> fetchNewArrivals() async {
     final response = await Dio().get(ApiConstants.getFirst10Products);
-    return List<NewArrivalsEntity>.from(
+    final newArrivals = List<NewArrivalsEntity>.from(
       (response.data as List).map(
         (newArrivals) => NewArrivalsModel.fromJson(newArrivals),
       ),
     );
+
+    saveNewArrivalsData(newArrivals, kNewArrivals);
+    return newArrivals;
   }
 
   @override
@@ -38,9 +44,11 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<CategoryEntity>> fetchCategories() async {
     final response = await Dio().get(ApiConstants.getAllCategories);
-    return List<CategoryEntity>.from(
+    final category = List<CategoryEntity>.from(
       (response.data as List)
           .map((categories) => CategoryModel.fromJson(categories)),
     );
+    saveCategoryData(category, kCategory);
+    return category;
   }
 }

@@ -30,11 +30,13 @@ class _ProductDetailsImagesState extends State<ProductDetailsImages> {
       (Timer timer) {
         if (currentPage < widget.imageUrl.length - 1) {
           currentPage++;
-          _pageController.animateToPage(
-            currentPage,
-            duration: const Duration(milliseconds: 350),
-            curve: Curves.easeIn,
-          );
+          if (_pageController.hasClients) {
+            _pageController.animateToPage(
+              currentPage,
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeIn,
+            );
+          }
         } else {
           currentPage = -1;
         }
