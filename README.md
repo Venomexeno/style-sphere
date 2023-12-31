@@ -26,13 +26,13 @@ Welcome to Fashion App – a simple and stylish fashion app!
 
 ![Settings](./screenshots/settings_screen.png)
 
-![Categories Screen](./categories_screen/home_screen.png)
+![Categories Screen](./screenshots/categories_screen.png)
 
 ![Category Products Screen](./screenshots/category_products_screen.png)
 
 ![Product Details Screen](./screenshots/product_details_screen.png)
 
-![Cart Page Screen](./screenshots/cart_page_screen.png)
+![Cart Screen](./screenshots/cart_page_screen.png)
 
 ## User-Friendly Interface
 
