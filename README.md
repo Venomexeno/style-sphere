@@ -18,6 +18,22 @@ Welcome to Fashion App – a simple and stylish fashion app!
 
 - **Order History:** Keep track of your shopping history with the order history page, making it easy to revisit your favorite purchases.
 
+## Screenshots
+
+![Home](./screenshots/home_screen.png)
+
+![My Orders](./screenshots/my_order_screen.png)
+
+![Settings](./screenshots/settings_screen.png)
+
+![Categories Screen](./categories_screen/home_screen.png)
+
+![Category Products Screen](./screenshots/category_products_screen.png)
+
+![Product Details Screen](./screenshots/product_details_screen.png)
+
+![Cart Page Screen](./screenshots/cart_page_screen.png)
+
 ## User-Friendly Interface
 
 With a user-friendly interface, Fashion App is designed to make your shopping experience intuitive and enjoyable. From browsing new arrivals to managing your cart and checking your order history, every step is crafted to ensure a seamless journey.
