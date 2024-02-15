@@ -1,6 +1,6 @@
-# Fashion App
+# Style Sphere
 
-Welcome to Fashion App – a simple and stylish fashion app!
+Welcome to Style Sphere App – a simple and stylish fashion app!
 
 ## Overview
 
@@ -36,9 +36,9 @@ Welcome to Fashion App – a simple and stylish fashion app!
 
 ## User-Friendly Interface
 
-With a user-friendly interface, Fashion App is designed to make your shopping experience intuitive and enjoyable. From browsing new arrivals to managing your cart and checking your order history, every step is crafted to ensure a seamless journey.
+With a user-friendly interface, Style Sphere is designed to make your shopping experience intuitive and enjoyable. From browsing new arrivals to managing your cart and checking your order history, every step is crafted to ensure a seamless journey.
 
-Elevate your shopping experience with Fashion App – where style meets convenience.
+Elevate your shopping experience with Style Sphere – where style meets convenience.
 
 **Note:** The fake API is used solely for development and testing purposes. For production, consider integrating with a real API.
 
@@ -49,7 +49,7 @@ Elevate your shopping experience with Fashion App – where style meets convenie
 #### Folder Structure
 
 ```root
-\---fashion-app     
+\---style-sphere     
     +---assets
     |   +---icons
     |   |       back_arrow.svg
